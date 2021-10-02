@@ -4,7 +4,7 @@ header {
     align-items: center;
 }
 
-.login {
+.formDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,4 +20,13 @@ header {
 .username, .password {
     margin: 10px; 
    
+}
+
+.hideForm {
+    display:none;
+}
+
+a {
+    text-decoration: none;
+    font-size : 1.2em;
 }

@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/index.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div>
-            <h1>CLOCKWORK</h1>
-        </div>
-    </header> 
-    <section class = 'login'>
+      <div>
+        <h1>CLOCKWORK</h1>
+      </div>
+    </header>
+
+    <div id="formDiv" class='formDiv'>
+      <form id="loginForm ">
         <h2>Login</h2>
-        <div class ="usrPass">
-            <form id = 'form'>
-            <input class = 'username' type = "text" placeholder = "Enter Username">
-            <input class = 'password' type = "text" placeholder = "Enter Password">
-            </form>
-        </div>
-    </section>
-    
-</body>
+        <fieldset>
+          <input class="username" type="text" placeholder="Enter Username" />
+          <input
+            class="password"
+            type="password"
+            placeholder="Enter Password"
+          />
+          <input type="submit" id="loginSubmit" />
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="formDiv ">    
+      <form id="registrationForm" class='hideForm' >
+        <h2>Registration Form</h2>
+        <fieldset>
+          <input class="username" type="text" placeholder="Enter Username" />
+          <input
+            class="password"
+            type="password"
+            placeholder="Enter Password"
+          />
+          <input class="email" type="email" placeholder="Enter Email" />
+          <input type="submit" id="registrationSubmit" />
+        </fieldset>
+      </form>
+    </div>
+    <div class="formDiv">
+        <p>Don't have an account? <a href=# id="signUp">Sign up Today!</p></a>
+    </div>
+    <script src="../js/script.js" ></script>  
+    <script src="../js/loginAuth.js" ></script>  
+    <script src="../js/registerAuth.js" ></script>  
+
+
+  </body>
 </html>
