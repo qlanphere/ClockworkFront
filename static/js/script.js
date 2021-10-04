@@ -1,3 +1,12 @@
+const options = {
+    linkSelector: 'a',
+    debugMode: true,
+};
+
+
+var swup = new Swup(options);
+
+
 // const { requestLogin } = require("../js/loginAuth");
 // const { requestRegistration } = require("../js/registerAuth");
 
@@ -13,11 +22,11 @@ document.addEventListener('DOMContenLoaded',(e)=>{
 });
 
 // Shows the registration form when the sign up link is clicked
-const signUp = document.querySelector('a')
-signUp.addEventListener('click',(e)=>{
-    e.preventDefault();
-    showRegistration();
-});
+// const signUp = document.querySelector('a')
+// signUp.addEventListener('click',(e)=>{
+//     e.preventDefault();
+//     showRegistration();
+// });
 
 
 function hideRegistrationForm(){
