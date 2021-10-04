@@ -28,6 +28,7 @@ const confirmPassword = document.getElementById("confirmPassword")
 confirmPassword.addEventListener("focusout",(e)=>{
     if (passwordRegister.value !== confirmPassword.value){
         
+
     }
 })
 
