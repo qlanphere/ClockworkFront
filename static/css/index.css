@@ -22,11 +22,40 @@ header {
    
 }
 
-.hideForm {
-    display:none;
+fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 a {
     text-decoration: none;
     font-size : 1.2em;
+}
+
+
+
+
+
+
+
+
+
+
+/* animation transition */
+.transition-fade {
+    transition: 800ms;
+    opacity: 1;
+    transform: translateY(0);
+    transform-origin: left;
+}
+
+html.is-animating .transition-fade {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+html.is-leaving .transition-fade {
+    opacity: 0;
 }
