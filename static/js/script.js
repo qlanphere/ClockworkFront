@@ -20,6 +20,17 @@ signUp.addEventListener('click',(e)=>{
 });
 
 
+//Validations for the input fields
+const usernameRegister = document.getElementById("usernameRegister")
+const passwordRegister = document.getElementById("passwordRegister")
+const confirmPassword = document.getElementById("confirmPassword")
+
+confirmPassword.addEventListener("focusout",(e)=>{
+    if (passwordRegister.value !== confirmPassword.value){
+        
+    }
+})
+
 function hideRegistrationForm(){
     registerForm.classList.add('hideForm')
 }   
