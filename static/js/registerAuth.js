@@ -1,5 +1,6 @@
 async function requestRegistration(e) {
 	e.preventDefault();
+	passwordMatch();
 	try {
 		const options = {
 			method: "POST",
@@ -28,4 +29,4 @@ async function requestRegistration(e) {
 	}
 }
 
-module.exports = { requestRegistration };
+module.exports =  requestRegistration ;

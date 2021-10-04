@@ -33,4 +33,4 @@ function login(token) {
 }
 
 
-module.exports = { requestLogin };
+module.exports = requestLogin ;
