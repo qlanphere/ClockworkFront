@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/index.css" />
+    <script defer src="node_modules/swup/dist/swup.min.js"></script>
+    <script defer src="../js/script.js" ></script> 
     <title>Document</title>
   </head>
   <body>
@@ -13,10 +15,9 @@
         <h1>CLOCKWORK</h1>
       </div>
     </header>
-
-    <div id="formDiv" class='formDiv'>
+<div id='swup' class='swup transition-fade'>
+    <div id="formDiv" class='formDiv '>
       <form id="loginForm">
-        <h2>Login</h2>
         <fieldset>
           <input class="username" type="text" placeholder="Enter Username" required />
           <input
@@ -25,12 +26,19 @@
             placeholder="Enter Password"
             required
           />
+          <!-- <h2>Login</h2>
+          <input class="username" type="text" placeholder="Enter Username" />
+          <input class="password" type="password" placeholder="Enter Password"/> -->
           <input type="submit" id="loginSubmit" />
+          <p>Don't have an account?  <a href='reg.html' id="signUp">Sign up Today!</a></p>
+       
         </fieldset>
       </form>
     </div>
+</div>
+    
 
-    <div class="formDiv ">    
+    <!-- <div class="formDiv ">    
       <form id="registrationForm" class="hideForm" >
         <h2>Registration Form</h2>
         <fieldset>
@@ -57,7 +65,8 @@
     <div class="formDiv">
         <p>Don't have an account? <a href=# id="signUp">Sign up Today!</p></a>
     </div>
-    <script src="../js/script.js" ></script>  
+    <script src="../js/script.js" ></script>   -->
+    
     <!-- <script src="../js/loginAuth.js" ></script>  
     <script src="../js/registerAuth.js" ></script>   -->
 
