@@ -15,16 +15,20 @@ function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
-function postHabit() {
-    habitName = document.getElementById('habitName').value
+function postHabit(e) {
+    e.preventDefault();
+    let habitName = document.getElementById('habitName').value
     const habitData = {
-        habitname: `${habitName}`
+        habitName: habitName
     }
     console.log(habitData)
     const url = `http://${host}:${port}/habits`
     const options = {
         method: 'POST',
-        headers:{ 'Content-Type':'applications/json'},
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(habitData)
     }
     console.log(options.body)
