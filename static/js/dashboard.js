@@ -1,6 +1,8 @@
-const host = localhost
+const host = 'localhost'
 const port = 3000
-const submitHabit = document.addEventListener('submit', postHabit)
+const submitButton = document.getElementById('habitSubmit')
+submitButton.addEventListener('click', postHabit)
+
 
 
 function show() {
@@ -14,15 +16,18 @@ function show() {
 }
 
 function postHabit() {
+    habitName = document.getElementById('habitName').value
     const habitData = {
-        habitName: document.getElementById('habitName').value
+        habitname: `${habitName}`
     }
+    console.log(habitData)
     const url = `http://${host}:${port}/habits`
     const options = {
         method: 'POST',
         headers:{ 'Content-Type':'applications/json'},
         body: JSON.stringify(habitData)
     }
+    console.log(options.body)
     fetch(url, options)
 }
 
