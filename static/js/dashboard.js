@@ -10,7 +10,15 @@ function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
+const checkPositive = document.getElementById('positive')
+const frequency = document.querySelector('.frequency')
 
+checkPositive.addEventListener('click', hide)
+
+function hide() {
+    frequency.classList.toggle('hidden')
+
+}
 
 function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
@@ -22,12 +30,23 @@ function postHabit(e) {
     let habitName = document.getElementById('habitName').value
     let frequency = document.getElementById('frequency').value
     let targetDate = document.getElementById('targetDate').value
+    let negative = document.getElementById('negative')
+    let negValue 
 
+    console.log(negative.checked)
+    
+    if(negative.checked) {
+        negValue = false 
+    } else {
+        negValue = true
+    }
 
+    
     const habitData = {
         habitName: habitName,
         frequency: frequency,
-        targetDate: targetDate
+        targetDate: targetDate,
+        habitType: negValue
     }
     console.log(habitData)
     const url = `http://${host}:${port}/habits`
