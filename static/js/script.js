@@ -6,7 +6,7 @@ const options = {
 };
 
 //animation library
-var swup = new Swup(options);
+//var swup = new Swup(options);
 
 //Eventlisteners on submit buttons
 window.addEventListener("load", () => {

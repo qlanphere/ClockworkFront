@@ -3,36 +3,36 @@ async function requestLogin(e) {
 	console.log("hello")
 	console.log(e.target.usernameLogin.value)
 	console.log(e.target.passwordLogin.value)
-// 	try {
-// 		const options = {
-// 			method: "POST",
-// 			headers: { "Content-Type": "application/json" },
-// 			body: JSON.stringify({
-// 				username: e.target.usernameLogin.value,
-// 				password: e.target.passwordLogin.value
-// 			})
-// 		};
-// 		const r = await fetch(
-// 			`http://localhost:3000/auth`,
-// 			options
-// 		);
-// 		const data = await r.json();
-// 		console.log("data", data);
-// 		if (!data.success) {
-// 			throw new Error("Login not authorised");
-// 		}
-// 		login(data.token);
-// 	} catch (err) {
-// 		console.warn(err);
-// 	}
-// }
+	try {
+		const options = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				userName: e.target.usernameLogin.value,
+				password: e.target.passwordLogin.value
+			})
+		};
+		const r = await fetch(
+			`http://localhost:3000/auth/login/`,
+			options
+		);
+		const data = await r.json();
+		console.log("data", data);
+		if (!data.success) {
+			throw new Error("Login not authorised");
+		}
+		login(data.token);
+	} catch (err) {
+		console.warn(err);
+	}
+}
 
-// function login(token) {
-// 	const user = jwt_decode(token);
-// 	localStorage.setItem("token", token);
-// 	localStorage.setItem("username", user.username);
-// 	localStorage.setItem("id", user.id);
-// 	window.location.href = "../html/dashboard.html";
+function login(token) {
+	const user = jwt_decode(token);
+	localStorage.setItem("token", token);
+	localStorage.setItem("username", user.username);
+	localStorage.setItem("id", user.id);
+	//window.location.href = "../html/dashboard.html";
 }
 
 
