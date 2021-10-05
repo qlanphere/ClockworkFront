@@ -37,6 +37,7 @@ async function requestLogin(e) {
     localStorage.setItem("username", user.username);
     localStorage.setItem("id", user.id);
 	console.log(localStorage.getItem("token"))
+	console.log(user.id)
     window.location.replace("dashboard.html");
   }
 

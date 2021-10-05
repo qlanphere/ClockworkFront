@@ -1,4 +1,5 @@
-
+const currentId = localStorage.getItem('id')
+console.log(currentId);
 const host = 'localhost'
 const port = 3000
 const submitButton = document.getElementById('habitSubmit')
@@ -26,7 +27,6 @@ function show() {
 
 function postHabit(e) {
     e.preventDefault();
-
     let habitName = document.getElementById('habitName').value
     let frequency = document.getElementById('frequency').value
     let targetDate = document.getElementById('targetDate').value
@@ -41,12 +41,13 @@ function postHabit(e) {
         negValue = true
     }
 
-    
+        
     const habitData = {
         habitName: habitName,
         frequency: frequency,
         targetDate: targetDate,
-        habitType: negValue
+        habitType: negValue,
+        userId: currentId
     }
     console.log(habitData)
     const url = `http://${host}:${port}/habits`
