@@ -1,4 +1,4 @@
-const currentId = localStorage.getItem('id')
+const currentId =  1 //localStorage.getItem('id')
 console.log(currentId);
 const host = 'localhost'
 const port = 3000
@@ -19,10 +19,6 @@ checkPositive.addEventListener('click', hide)
 function hide() {
     frequency.classList.toggle('hidden')
 
-}
-
-function show() {
-    document.getElementById('habitAddPage').classList.toggle('active')
 }
 
 function postHabit(e) {
@@ -63,24 +59,32 @@ function postHabit(e) {
     fetch(url, options)
 }
 
+async function getHabits(e) {
 
-// async function postHabit(e) {
-//     e.preventDefault();
-//     try {
-        
-//         const options = {
-//             method: 'POST',
-//             headers: {"Content-Type": "application/json"},
-//             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
-//         }
-//         const response = await fetch('http://localhost:3000/habits', options);
-//         const {id, err} = await response.json();
-//         if (err) {
-//             throw Error(err)
-//         } else {
-//             window.location.hash = `#habits/${id}`
-//         }
-        
-//     }
-// }
+    e.preventDefault()
+
+    let url = `http://${host}:${port}/habits/${currentId}`
+
+    fetch(url)
+    .then(r => r.json())
+    .then(data => {
+
+        for(let i=0;i<data.length();i++) {
+
+            let habitId = data[i].habitId
+            let habitName = data[i].habitName
+            let frequency = data[i].frequency
+            let startDate = data[i].startDate
+            let targetDate = data[i].targetDate
+            let habitType = data[i].habitType
+
+           displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType)
+        }
+    })
+}
+
+function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
+
+}
+
 
