@@ -1,3 +1,8 @@
+const host = localhost
+const port = 3000
+const submitHabit = document.addEventListener('submit', postHabit)
+
+
 function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
 }
@@ -6,6 +11,19 @@ function show() {
 
 function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
+}
+
+function postHabit() {
+    const habitData = {
+        habitName: document.getElementById('habitName').value
+    }
+    const url = `http://${host}:${port}/habits`
+    const options = {
+        method: 'POST',
+        headers:{ 'Content-Type':'applications/json'},
+        body: JSON.stringify(habitData)
+    }
+    fetch(url, options)
 }
 
 
