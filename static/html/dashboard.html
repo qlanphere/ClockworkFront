@@ -31,12 +31,13 @@
              <input id ="habitName" type='text' placeholder="enter habit">
              <div class="posNeg">
                  <!-- positive element on the left negative on the right resolves boolean -->
-                 <p class="positve">Positive</p> <p class="negative">Negative</p>
+                 <input type="checkbox" name="Positive" id="positive">
+                 <input type="checkbox" name="Negative" id="negative">
              </div>
-             <div class="frequency">
+             <div class="frequency" >
                  <!-- input text with day/week/month selector  -->
                  <p> How many times do you want to do this habit? 
-                 <input type="text" placeholder="#"> <span>per</span>
+                 <input type="text" placeholder="#" id="frequency"> <span>per</span>
                  <span class="day">Day</span>
                  <span class="week">Week</span>
                  <span class="month">Month</span>
@@ -44,7 +45,7 @@
              <div class="target date">
                  <!-- date selector -->
                  <p>set a target</p>
-                 <input type="text">
+                 <input type="text" id ="targetDate">
              </div>
 
         </section>

@@ -1,3 +1,4 @@
+
 const host = 'localhost'
 const port = 3000
 const submitButton = document.getElementById('habitSubmit')
@@ -17,9 +18,16 @@ function show() {
 
 function postHabit(e) {
     e.preventDefault();
+
     let habitName = document.getElementById('habitName').value
+    let frequency = document.getElementById('frequency').value
+    let targetDate = document.getElementById('targetDate').value
+
+
     const habitData = {
-        habitName: habitName
+        habitName: habitName,
+        frequency: frequency,
+        targetDate: targetDate
     }
     console.log(habitData)
     const url = `http://${host}:${port}/habits`
