@@ -10,7 +10,15 @@ function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
+const checkPositive = document.getElementById('positive')
+const frequency = document.querySelector('.frequency')
 
+checkPositive.addEventListener('click', hide)
+
+function hide() {
+    frequency.classList.toggle('hidden')
+
+}
 
 function show() {
     document.getElementById('habitAddPage').classList.toggle('active')
