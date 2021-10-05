@@ -14,7 +14,7 @@ function show() {
 const checkPositive = document.getElementById('positive')
 const frequency = document.querySelector('.frequency')
 
-checkPositive.addEventListener('click', hide)
+checkPositive.addEventListener('click', getHabits)
 
 function hide() {
     frequency.classList.toggle('hidden')
@@ -63,13 +63,14 @@ async function getHabits(e) {
 
     e.preventDefault()
 
-    let url = `http://${host}:${port}/habits/${currentId}`
+    let url = `http://${host}:${port}/habits/user/${currentId}`
 
     fetch(url)
     .then(r => r.json())
-    .then(data => {
 
-        for(let i=0;i<data.length();i++) {
+    .then(data => {
+        console.log(data)
+        for(let i=0;i<data.length;i++) {
 
             let habitId = data[i].habitId
             let habitName = data[i].habitName
@@ -84,7 +85,11 @@ async function getHabits(e) {
 }
 
 function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
-
+    const habitBox = document.getElementById('habit-container')
+    const newHabit = document.createElement('div')
+    const habitTitle = document.createTextNode(habitName)
+    habitBox.appendChild(newHabit)
+    newHabit.appendChild(habitTitle)
 }
 
 
