@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="../js/dashboard.js"></script>
     <title>Main Page </title>
 </head>
 <body>
+    
     <!-- navbar / sign out options -->
     <header></header>
     <!-- Profile section, user icon, badge and progress bar  -->
@@ -15,9 +18,36 @@
         <div id='badgeProgress'></div>
     </section>
     <!-- Habit area + streak progress bars  -->
-    <section id='habit-container'></section> 
+    <section id='habit-container'>
+        <button id="add-habit" onclick="show()">toggle</button>
+    </section> 
     <!-- Add new habit button  -->
-    <footer></footer>
+    <footer>
+        <div>
+           
+        </div>
+         <section id="habitAddPage">
+             <input id ="habitName" type='text' placeholder="enter habit">
+             <div class="posNeg">
+                 <!-- positive element on the left negative on the right resolves boolean -->
+                 <p class="positve">Positive</p> <p class="negative">Negative</p>
+             </div>
+             <div class="frequency">
+                 <!-- input text with day/week/month selector  -->
+                 <p> How many times do you want to do this habit? 
+                 <input type="text" placeholder="#"> <span>per</span>
+                 <span class="day">Day</span>
+                 <span class="week">Week</span>
+                 <span class="month">Month</span>
+             </div>
+             <div class="target date">
+                 <!-- date selector -->
+                 <p>set a target</p>
+                 <input type="text">
+             </div>
+
+        </section>
+    </footer>
 
 </body>
 </html>
