@@ -22,6 +22,7 @@ window.addEventListener("load", () => {
     const pass = passwordMatch();
     if (pass){ 
         console.log("hello hi")
+      
         requestRegistration(e);
     }
     else {
