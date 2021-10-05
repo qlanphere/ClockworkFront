@@ -1,50 +1,56 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+"use strict";function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var r="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(r){var t=String(r).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,o,a=0,i=0,c="";o=t.charAt(i++);~o&&(n=a%4?64*n+o:o,a++%4)?c+=String.fromCharCode(255&n>>(-2*a&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return c};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(r(e).replace(/(.)/g,(function(e,r){var t=r.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return r(t)}}function n(e){this.message=e}function o(e,r){if("string"!=typeof e)throw new n("Invalid token specified");var o=!0===(r=r||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new n("Invalid token specified: "+e.message)}}n.prototype=new Error,n.prototype.name="InvalidTokenError";const a=o;a.default=o,a.InvalidTokenError=n,module.exports=a;
+
+
+},{}],2:[function(require,module,exports){
+const jwt_decode = require('jwt-decode');
+
 async function requestLogin(e) {
-	e.preventDefault();
-	console.log("hello")
-	console.log(e.target.usernameLogin.value)
-	console.log(e.target.passwordLogin.value)
-// 	try {
-// 		const options = {
-// 			method: "POST",
-// 			headers: { "Content-Type": "application/json" },
-// 			body: JSON.stringify({
-// 				username: e.target.usernameLogin.value,
-// 				password: e.target.passwordLogin.value
-// 			})
-// 		};
-// 		const r = await fetch(
-// 			`http://localhost:3000/auth`,
-// 			options
-// 		);
-// 		const data = await r.json();
-// 		console.log("data", data);
-// 		if (!data.success) {
-// 			throw new Error("Login not authorised");
-// 		}
-// 		login(data.token);
-// 	} catch (err) {
-// 		console.warn(err);
-// 	}
-// }
+    e.preventDefault();
+    // console.log("hello")
+    // console.log(e.target.usernameLogin.value)
+    // console.log(e.target.passwordLogin.value)
+    try {
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "userName": e.target.usernameLogin.value,
+          "password": e.target.passwordLogin.value
+        })
+      };
+      console.log('i made it')
+      const r = await fetch(
+        `http://localhost:3000/auth/login/`,
+        options
+      );
+      console.log('im here too')
+      const data = await r.json();
+      if (!data.success) {
+        throw new Error("Login not authorised");
+      }
+	  console.log(data)
+      login(data.token);
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  
+  function login(token) {
+    const user = jwt_decode(token);
+    localStorage.setItem("token", token);
+    localStorage.setItem("username", user.username);
+    localStorage.setItem("id", user.id);
+	  console.log(localStorage.getItem("token"))
+    // window.location.replace("dashboard.html");
+  }
 
-// function login(token) {
-// 	const user = jwt_decode(token);
-// 	localStorage.setItem("token", token);
-// 	localStorage.setItem("username", user.username);
-// 	localStorage.setItem("id", user.id);
-// 	window.location.href = "../html/dashboard.html";
-}
 
-// function requestRegistration(){
-// 	alert("Hello");
-// }
-
-async function requestRegistration(e) {
-	e.preventDefault();
-	console.log("hello")	
-	console.log(e.target.usernameRegister.value);
-	console.log(e.target.passwordRegister.value);
+// async function requestRegistration(e) {
+// 	e.preventDefault();
+// 	console.log("hello")	
+// 	console.log(e.target.usernameRegister.value);
+// 	console.log(e.target.passwordRegister.value);
 	// try {
 	// 	const options = {
 	// 		method: "POST",
@@ -68,48 +74,44 @@ async function requestRegistration(e) {
 	// } catch (err) {
 	// 	console.warn(err);
 	// }
-}
-
-
-module.exports = {requestLogin: requestLogin,
-requestRegistration:requestRegistration};
-
-},{}],2:[function(require,module,exports){
-// async function requestRegistration(e) {
-// 	e.preventDefault();
-// 	console.log("hello")	
-// 	try {
-// 		const options = {
-// 			method: "POST",
-// 			headers: { "Content-Type": "application/json" },
-// 			body: JSON.stringify({
-// 				username: e.target.username.value,
-// 				email: e.target.email.value,
-// 				password: e.target.password.value
-// 			})
-// 		};
-// 		console.log(e.target.username.value);
-// 		console.log(e.target.email.value);
-// 		console.log(e.target.password.value);
-// 		const r = await fetch(
-// 			`https://localhost:3000/auth/register`,
-// 			options
-// 		);
-// 		const data = await r.json();
-// 		if (data.err) {
-// 			throw Error(data.err);
-// 			return;
-// 		}
-// 		window.location.href = "../html/index.html";
-// 	} catch (err) {
-// 		console.warn(err);
-// 	}
 // }
 
 
+module.exports = {requestLogin: requestLogin};
 
-// module.exports =  {requestRegistration: requestRegistration} ;
-},{}],3:[function(require,module,exports){
+},{"jwt-decode":1}],3:[function(require,module,exports){
+async function requestRegistration(e) {
+	e.preventDefault();
+	// console.log("hello")	
+	// console.log(e.target.usernameRegister.value);
+	// console.log(e.target.passwordRegister.value);
+	try {
+		const options = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				"userName": e.target.usernameRegister.value,
+				"password": e.target.passwordRegister.value
+			})
+		};
+		
+		const r = await fetch(
+			`http://localhost:3000/auth/register/`,
+			options
+		);
+		const data = await r.json();
+		if (data.err) {
+			throw Error(data.err);
+		}
+		window.location.replace("index.html");
+	} catch (err) {
+		console.warn(err);
+	}
+}
+
+
+module.exports = {requestRegistration:requestRegistration};
+},{}],4:[function(require,module,exports){
 const { requestRegistration, requestLogin } = require("./loginAuth");
 
 const options = {
@@ -193,4 +195,4 @@ function hideRegistrationForm() {
 // }
 
 module.exports = passwordMatch;
-},{"./loginAuth":1}]},{},[3,1,2]);
+},{"./loginAuth":2}]},{},[4,2,3]);
