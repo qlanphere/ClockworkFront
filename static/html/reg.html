@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/index.css" />
-    <script defer src="node_modules/swup/dist/swup.min.js"></script>
-    <script defer src="../js/script.js" ></script> 
+    <script defer src="../../node_modules/swup/dist/swup.min.js" defer></script>
+    <!-- <script defer src="../js/script.js" defer></script> 
+    <script src="../js/loginAuth.js" defer></script>  
+    <script src="../js/registerAuth.js" defer></script>   -->
+    <script src="../../bundle.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -21,9 +24,12 @@
         
         <fieldset>
           <h2>Sign Up!</h2>
-          <input class="username" type="text" placeholder="Enter Username" />
-          <input class="password" type="password" placeholder="Enter Password"/>
-          <input class="password" type="password" placeholder="Confirm Password"/>
+          <input class="username" id="usernameRegister" type="text" placeholder="Enter Username" required/>
+          <input class="password" id = "passwordRegister" type="password" placeholder="Enter Password"required/>
+          <input class="password" id="confirmPassword" type="password" placeholder="Confirm Password" required/>
+          <div class="popup" >
+            <span class="popuptext" id="passwordPopup">The passwords do not match!</span>
+          </div>
           <input type="submit" id="registrationSubmit" />
           <div class="formDiv">
             <p>Already have an account?  <a href='index.html' id="signUp">Sign in here!</a></p>
@@ -33,8 +39,7 @@
     </div>
     
    
-    <!-- <script src="../js/loginAuth.js" ></script>  
-    <script src="../js/registerAuth.js" ></script>   -->
+    
 
 
   </body>
