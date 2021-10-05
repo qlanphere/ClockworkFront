@@ -1,4 +1,4 @@
-const { requestRegistration, requestLogin } = require("./loginAuth");
+const { requestLogin, requestRegistration } = require("./loginAuth");
 
 const options = {
   linkSelector: "a",
@@ -21,7 +21,8 @@ window.addEventListener("load", () => {
     console.log("e" + e);  
     const pass = passwordMatch();
     if (pass){ 
-        console.log("hello hi")
+        // console.log("hello hi")
+        e.preventDefault();
         requestRegistration(e);
     }
     else {
