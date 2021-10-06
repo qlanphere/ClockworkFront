@@ -105,6 +105,7 @@ function badgeChecker(badgePoints) {
     } if (badgePoints > 150) {
         badge=gold
     }
+    else badge = ""
     return badge
 }
 
