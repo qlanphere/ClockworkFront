@@ -4,7 +4,7 @@
 
 },{}],2:[function(require,module,exports){
 const currentId = localStorage.getItem('id')
-console.log(currentId);
+console.log(localStorage);
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
 const submitButton = document.getElementById('habitSubmit')
@@ -76,6 +76,7 @@ function postHabit(e) {
     }
     console.log(options.body)
     fetch(url, options)
+    .then(() => location.reload())
 }
 
 async function getHabits(e) {
@@ -119,12 +120,14 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const editDel = document.createElement('div')
     const edit = document.createElement('a')
     const delet = document.createElement('a')
+    const id = document.createElement('p')
     
     const habitTitle = document.createElement('h2')
     const typeBtn = document.createElement('h2')
     const habitStart = document.createTextNode
 
     dots.textContent = "..."
+    id.textContent = habitId
     habitTitle.textContent = habitName
     edit.textContent = "edit";
     delet.textContent = "delete"
@@ -134,12 +137,13 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     } else {
         typeBtn.textContent = '-'
     }
-
+    id.classList.add('hidden')
     newHabit.classList.add(`habit-card`)
     dots.classList.add('edit')
     typeBtn.classList.add('typeBtn')
     habitTitle.classList.add('habitTitle')
     editDiv.classList.add('dropdown')
+
     editDel.classList.add('dropdown-content')
     editDel.setAttribute('id','myDropdown')
     
@@ -150,6 +154,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     editDiv.appendChild(editDel)
     editDel.appendChild(edit)
     editDel.appendChild(delet)
+    editDel.appendChild(id)
     
     newHabit.appendChild(habitTitle)
     newHabit.appendChild(typeBtn)
@@ -158,15 +163,19 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
    // function for dropdown box showing edit and delete
   
     dots.addEventListener('click', (e) => showDrop(e))
+    delet.addEventListener('click',() => deleteHabit(habitId))
 
    
 }
 
 function showDrop (e) {
     const target = e.target.closest('div')
+    let child = target.querySelector('.dropdown-content')
     console.log(target)
-    target.classList.toggle('show')
+    child.classList.toggle('show')
 }
+
+
 
 
 
@@ -186,13 +195,14 @@ function badgeChecker(badgePoints) {
 function deleteHabit(id) {
     let url = `https://${host}/habits/${id}`
     let options = {
-        method: "DELETE",
+        method: 'DELETE',
         mode: 'cors',
         headers: { "Content-Type": "application/json",
                     "authorization": localStorage.getItem('token')
                 }
     }
     fetch(url,options)
+    .then(() => location.reload())
 }
 
 function editHabit(id, frequency, targetDate) {

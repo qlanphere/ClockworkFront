@@ -86,4 +86,8 @@ footer {
 .show {
     display: block;
 }
+
+.hidden {
+    display: hidden;
+}
   
