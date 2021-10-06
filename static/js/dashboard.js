@@ -2,25 +2,25 @@ const currentId = localStorage.getItem('id')
 console.log(currentId);
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
-const submitButton = document.getElementById('habitSubmit')
-submitButton.addEventListener('click', postHabit)
+// const submitButton = document.getElementById('habitSubmit')
+// submitButton.addEventListener('click', postHabit)
 
 const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
 
-const showForm = document.getElementById('add-habit')
-showForm.addEventListener('click', show)
+// const showForm = document.getElementById('add-habit')
+// showForm.addEventListener('click', show)
 
 function show() {
     console.log('clicked')
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
-const checkPositive = document.getElementById('positive')
-const frequency = document.querySelector('.frequency')
+// const checkPositive = document.getElementById('positive')
+// const frequency = document.querySelector('.frequency')
 
-checkPositive.addEventListener('click', getHabits)
+// checkPositive.addEventListener('click', getHabits)
 
 function hide() {
     frequency.classList.toggle('hidden')
@@ -122,6 +122,19 @@ function badgeChecker(badgePoints) {
     return badge
 }
 
-module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
+function addBadgepoint(e){
+    e.preventDefault()
+    let url = `https://${host}/users/${currentId}/`
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+}
+
+module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide, addBadgepoint}
 
 
