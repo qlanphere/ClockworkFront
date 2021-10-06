@@ -6,31 +6,41 @@
 const currentId = localStorage.getItem('id')
 console.log(currentId);
 const host = 'clockworkback.herokuapp.com'//'localhost'
-//const host = 'localhost:3000'
-const submitButton = document.getElementById('habitSubmit')
-submitButton.addEventListener('click', postHabit)
+//const port = 3000
+// const submitButton = document.getElementById('habitSubmit')
+// submitButton.addEventListener('click', postHabit)
 
-const bronze = "../badges/Bronze.png"
-const silver = "../badges/Silver.png"
-const gold = "../badges/Gold.png"
+// window.addEventListener('DOMContentLoaded', getHabits)
 
-const showForm = document.getElementById('add-habit')
-showForm.addEventListener('click', show)
 
-function show() {
-    console.log('clicked')
-    document.getElementById('habitAddPage').classList.toggle('active')
-}
+// const bronze = "../badges/Bronze.png"
+// const silver = "../badges/Silver.png"
+// const gold = "../badges/Gold.png"
 
-const checkPositive = document.getElementById('positive')
-const frequency = document.querySelector('.frequency')
+// const showForm = document.getElementById('add-habit')
+// showForm.addEventListener('click', show)
 
-checkPositive.addEventListener('click', getHabits)
+// function show() {
+//     console.log('clicked')
+//     document.getElementById('habitAddPage').classList.toggle('active')
+// }
+
+
+
+// const checkPositive = document.getElementById('positive')
+// const frequency = document.querySelector('.frequency')
+
+// checkPositive.addEventListener('click', getHabits)
 
 function hide() {
     frequency.classList.toggle('hidden')
 
 }
+
+function show() {
+        console.log('clicked')
+        document.getElementById('habitAddPage').classList.toggle('active')
+    }
 
 function postHabit(e) {
     e.preventDefault();
@@ -57,7 +67,8 @@ function postHabit(e) {
         userId: currentId
     }
     console.log(habitData)
-    const url = `https://${host}/habits/`
+    console.log(localStorage.getItem('token'))
+    const url = `https://${host}/habits `
     const options = {
         method: 'POST',
         mode: 'cors',
@@ -84,14 +95,14 @@ async function getHabits(e) {
                 }
     }
 
-    fetch(url,options)
+    fetch(url, options)
     .then(r => r.json())
 
     .then(data => {
         console.log(data)
         for(let i=0;i<data.length;i++) {
-
-            let habitId = data[i].habitId
+            
+            let habitId = data[i].habitid
             let habitName = data[i].habitName
             let frequency = data[i].frequency
             let startDate = data[i].startDate
@@ -106,48 +117,146 @@ async function getHabits(e) {
 function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
-    const habitTitle = document.createTextNode(habitName)
-    const habitStart = document.createTextNode
-    habitBox.appendChild(newHabit)
-    newHabit.appendChild(habitTitle)
-
     
-}
+    const editDiv = document.createElement('div')
+    const dots = document.createElement('h2')
+    const editDel = document.createElement('div')
+    const edit = document.createElement('a')
+    const delet = document.createElement('a')
+    
+    const habitTitle = document.createElement('h2')
+    const typeBtn = document.createElement('h2')
+    const habitStart = document.createTextNode
 
-function badgeChecker(badgePoints) {
-    let badge
-    if (badgePoints > 50) {
-        badge = bronze
-    } if (badgePoints > 100) {
-        badge = silver
-    } if (badgePoints > 150) {
-        badge=gold
+    dots.textContent = "..."
+    habitTitle.textContent = habitName
+    edit.textContent = "edit";
+    delet.textContent = "delete"
+    
+    if(habitType === true) {
+        typeBtn.textContent = '+'
+    } else {
+        typeBtn.textContent = '-'
     }
-    else badge = ""
-    return badge
+
+    newHabit.classList.add(`habit-card`)
+    dots.classList.add('edit')
+    typeBtn.classList.add('typeBtn')
+    habitTitle.classList.add('habitTitle')
+    editDiv.classList.add('dropdown')
+    editDel.classList.add('dropdown-content')
+    editDel.setAttribute('id','myDropdown')
+    
+    habitBox.appendChild(newHabit)
+   
+    newHabit.appendChild(editDiv)
+    editDiv.appendChild(dots)
+    editDiv.appendChild(editDel)
+    editDel.appendChild(edit)
+    editDel.appendChild(delet)
+    
+    newHabit.appendChild(habitTitle)
+    newHabit.appendChild(typeBtn)
+    
+   
+   // function for dropdown box showing edit and delete
+  
+    dots.addEventListener('click', (e) => showDrop(e))
+
+   
 }
 
-// function addBadgepoint(){
-//     e.preventDefault()
+function showDrop (e) {
+    const target = e.target.closest('div')
+    console.log(target)
+    target.classList.toggle('show')
+}
 
-//     let url = `https://${host}/users/${currentId}`
-//     let options = {
-//         method: "PATCH",
-//         mode: 'cors',
-//         headers: { "Content-Type": "application/json",
-//                     "authorization": localStorage.getItem('token')
-//                 },
-//                 body: JSON.stringify(currentId)
+
+
+// function badgeChecker(badgePoints) {
+//     let badge
+//     if (badgePoints > 50) {
+//         badge = bronze
+//     } if (badgePoints > 100) {
+//         badge = silver
+//     } if (badgePoints > 150) {
+//         badge=gold
 //     }
-
-//     fetch(url,options)
-//     .then(r => r.json())
-
+//     else badge = ""
+//     return badge
 // }
 
+function addBadgepoint(e){
+    e.preventDefault()
+    let url = `https://${host}/users/${currentId}/`
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
 
+   
+    let optionsBadge = {
+        method: "GET",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
 
-module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
+    fetch(url, optionsBadge)
+    .then(r => r.json())
+    .then(data => {
+        const currentBadgePoints = data.badgePoints;
+        const badgeIcon = document.getElementById("badgeImage")
+        if (currentBadgePoints > 150) {
+            badgeIcon.src = "../../badges/Gold.png"
+        } else if (currentBadgePoints > 100) {
+            badgeIcon.src = "../../badges/Silver.png"
+        } else if (currentBadgePoints > 50) {
+            badgeIcon.src = "../../badges/Bronze.png"
+            
+        }
+    })
+}
+
+function deleteHabit(id) {
+    let url = `https://${host}/habits/${id}`
+    let options = {
+        method: "DELETE",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+}
+
+function editHabit(id, frequency, targetDate) {
+
+    let url = `https://${host}/habits/${id}`
+
+    updatedHabitInfo = {
+        "frequency": frequency,
+        "targetDate": targetDate
+    }
+
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                },
+        body: updatedHabitInfo
+    }
+    fetch(url,options)
+}
+
+module.exports = { displayHabits, getHabits, postHabit, show, hide, addBadgepoint, editHabit,deleteHabit}
 
 
 
@@ -229,40 +338,9 @@ async function requestLogin(e) {
 module.exports = {requestLogin: requestLogin, requestRegistration: requestRegistration};
 
 },{"jwt-decode":1}],4:[function(require,module,exports){
-// async function requestRegistration(e) {
-// 	e.preventDefault();
-// 	// console.log("hello")	
-// 	// console.log(e.target.usernameRegister.value);
-// 	// console.log(e.target.passwordRegister.value);
-// 	try {
-// 		const options = {
-// 			method: "POST",
-// 			headers: { "Content-Type": "application/json" },
-// 			body: JSON.stringify({
-// 				"userName": e.target.usernameRegister.value,
-// 				"password": e.target.passwordRegister.value
-// 			})
-// 		};
-		
-// 		const r = await fetch(
-// 			`http://localhost:3000/auth/register/`,
-// 			options
-// 		);
-// 		const data = await r.json();
-// 		if (data.err) {
-// 			throw Error(data.err);
-// 		}
-// 		// window.location.replace("index.html");
-// 	} catch (err) {
-// 		console.warn(err);
-// 	}
-// }
 
-
-// module.exports = {requestRegistration:requestRegistration};
-},{}],5:[function(require,module,exports){
-const { addBadgepoint } = require("./dashboard");
 const { requestLogin, requestRegistration } = require("./loginAuth");
+const { addBadgepoint, postHabit, show, getHabits } = require("./dashboard");
 
 
 const options = {
@@ -275,29 +353,66 @@ const options = {
 
 //Eventlisteners on submit buttons
 window.addEventListener("load", () => {
-  const loginForm = document.getElementById("loginForm");  
+  const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registrationForm");
   if (loginForm) {
-    loginForm.addEventListener("submit",requestLogin);
+    loginForm.addEventListener("submit", requestLogin);
   }
 
-  if (registerForm){
-  registerForm.addEventListener("submit", (e)=>{
-    console.log("e" + e);  
-    const pass = passwordMatch();
-    if (pass){ 
+  if (registerForm) {
+    registerForm.addEventListener("submit", (e) => {
+      console.log("e" + e);
+      const pass = passwordMatch();
+      if (pass) {
         // console.log("hello hi")
         e.preventDefault();
         requestRegistration(e);
-    }
-    else {
-        e.preventDefault(); 
+      } else {
+        e.preventDefault();
         passwordMatch(e);
-    }
-    
-  })
+      }
+    });
   }
-})
+  const submitButton = document.getElementById("habitSubmit");
+  if (submitButton) {
+    submitButton.addEventListener("click", postHabit);
+  }
+
+  const showForm = document.getElementById("add-habit");
+  if (showForm) {
+    showForm.addEventListener("click", show);
+  }
+
+  const checkPositive = document.getElementById("positive");
+  const frequency = document.querySelector(".frequency");
+  if (checkPositive) {
+    checkPositive.addEventListener("click", getHabits);
+  }
+
+  const badgeButton = document.getElementById("badgePoint");
+  if (badgeButton) {
+    let count = 0;
+    let today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let todaysDate = `${year}-${month}-${day}`;
+
+      badgeButton.addEventListener("click",(e) => {
+        let currentDate = new Date();
+        let currentTime = currentDate.getTime();
+        let firstClick = currentTime;
+        let secondsDay = 86400000;
+        let timeDiff = secondsDay - currentTime;
+        if(count === 0) {
+          count ++;
+          
+          addBadgepoint(e)
+        } else {
+          console.log('stop pressing')
+        }
+      } );
+    }});
 
 // Hiding the registration form when the page loads
 document.addEventListener("DOMContenLoaded", (e) => {
@@ -310,14 +425,13 @@ const usernameRegister = document.getElementById("usernameRegister");
 const passwordRegister = document.getElementById("passwordRegister");
 const confirmPassword = document.getElementById("confirmPassword");
 const popUp = document.getElementById("passwordPopup");
-const registerSubmit = document.getElementById('registrationSubmit')
+const registerSubmit = document.getElementById("registrationSubmit");
 
 if (confirmPassword) {
-    confirmPassword.addEventListener("blur", (e) => {
+  confirmPassword.addEventListener("blur", (e) => {
     passwordMatch();
   });
 }
-
 
 function passwordMatch() {
   console.log(passwordRegister.value);
@@ -326,9 +440,8 @@ function passwordMatch() {
     popUp.classList.toggle("show");
     confirmPassword.focus();
     return false;
-  }
-  else {
-      return true;
+  } else {
+    return true;
   }
 }
 function hideRegistrationForm() {
@@ -341,5 +454,8 @@ function hideRegistrationForm() {
 // const badgeButton  = document.getElementById("badgePoint")
 // badgeButton.addEventListener("click",addBadgepoint);
 
+// event listener for badgepoint
+
 module.exports = passwordMatch;
-},{"./dashboard":2,"./loginAuth":3}]},{},[5,3,4,2]);
+
+},{"./dashboard":2,"./loginAuth":3}]},{},[4,3,2]);
