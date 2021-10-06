@@ -62,7 +62,7 @@ function postHabit(e) {
         method: 'POST',
         mode: 'cors',
         headers: {
-            
+            "Content-Type": "application/json",
             "authorization":localStorage.getItem('token')
         },
         body: JSON.stringify(habitData)
