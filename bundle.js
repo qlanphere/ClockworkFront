@@ -6,7 +6,7 @@
 const currentId = localStorage.getItem('id')
 console.log(currentId);
 const host = 'clockworkback.herokuapp.com'//'localhost'
-//const port = 3000
+//const host = 'localhost:3000'
 const submitButton = document.getElementById('habitSubmit')
 submitButton.addEventListener('click', postHabit)
 
@@ -127,6 +127,26 @@ function badgeChecker(badgePoints) {
     return badge
 }
 
+// function addBadgepoint(){
+//     e.preventDefault()
+
+//     let url = `https://${host}/users/${currentId}`
+//     let options = {
+//         method: "PATCH",
+//         mode: 'cors',
+//         headers: { "Content-Type": "application/json",
+//                     "authorization": localStorage.getItem('token')
+//                 },
+//                 body: JSON.stringify(currentId)
+//     }
+
+//     fetch(url,options)
+//     .then(r => r.json())
+
+// }
+
+
+
 module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
 
 
@@ -241,7 +261,9 @@ module.exports = {requestLogin: requestLogin, requestRegistration: requestRegist
 
 // module.exports = {requestRegistration:requestRegistration};
 },{}],5:[function(require,module,exports){
+const { addBadgepoint } = require("./dashboard");
 const { requestLogin, requestRegistration } = require("./loginAuth");
+
 
 const options = {
   linkSelector: "a",
@@ -313,16 +335,11 @@ function hideRegistrationForm() {
   registerForm.classList.add("hideForm");
 }
 
-// Shows the registration form when the sign up link is clicked
-// const signUp = document.querySelector('a')
-// signUp.addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     showRegistration();
-// });
-// function showRegistration(){
-//     registerForm.classList.remove('hideForm')
-//     loginForm.classList.add('hideForm')
-// }
+
+
+// // event listener for badgepoint
+// const badgeButton  = document.getElementById("badgePoint")
+// badgeButton.addEventListener("click",addBadgepoint);
 
 module.exports = passwordMatch;
-},{"./loginAuth":3}]},{},[5,3,4,2]);
+},{"./dashboard":2,"./loginAuth":3}]},{},[5,3,4,2]);

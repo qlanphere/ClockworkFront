@@ -1,4 +1,6 @@
+const { addBadgepoint } = require("./dashboard");
 const { requestLogin, requestRegistration } = require("./loginAuth");
+
 
 const options = {
   linkSelector: "a",
@@ -70,15 +72,10 @@ function hideRegistrationForm() {
   registerForm.classList.add("hideForm");
 }
 
-// Shows the registration form when the sign up link is clicked
-// const signUp = document.querySelector('a')
-// signUp.addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     showRegistration();
-// });
-// function showRegistration(){
-//     registerForm.classList.remove('hideForm')
-//     loginForm.classList.add('hideForm')
-// }
+
+
+// // event listener for badgepoint
+// const badgeButton  = document.getElementById("badgePoint")
+// badgeButton.addEventListener("click",addBadgepoint);
 
 module.exports = passwordMatch;
