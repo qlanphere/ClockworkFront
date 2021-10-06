@@ -94,8 +94,8 @@ async function getHabits(e) {
     .then(data => {
         console.log(data)
         for(let i=0;i<data.length;i++) {
-
-            let habitId = data[i].habitId
+            
+            let habitId = data[i].habitid
             let habitName = data[i].habitName
             let frequency = data[i].frequency
             let startDate = data[i].startDate
@@ -110,13 +110,21 @@ async function getHabits(e) {
 function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
-    const edit = document.createElement('h2')
+    
+    const editDiv = document.createElement('div')
+    const dots = document.createElement('h2')
+    const editDel = document.createElement('div')
+    const edit = document.createElement('a')
+    const delet = document.createElement('a')
+    
     const habitTitle = document.createElement('h2')
     const typeBtn = document.createElement('h2')
     const habitStart = document.createTextNode
 
-    edit.textContent = "..."
+    dots.textContent = "..."
     habitTitle.textContent = habitName
+    edit.textContent = "edit";
+    delet.textContent = "delete"
     
     if(habitType === true) {
         typeBtn.textContent = '+'
@@ -124,19 +132,35 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
         typeBtn.textContent = '-'
     }
 
-    newHabit.classList.add('habit-card')
-    edit.classList.add('edit')
+    newHabit.classList.add(`habit-card`)
+    dots.classList.add('edit')
     typeBtn.classList.add('typeBtn')
     habitTitle.classList.add('habitTitle')
+    editDiv.classList.add('dropdown')
+    editDel.classList.add('dropdown-content')
+    editDel.setAttribute('id','myDropdown')
     
     habitBox.appendChild(newHabit)
-    newHabit.appendChild(edit)
+   
+    newHabit.appendChild(editDiv)
+    editDiv.appendChild(dots)
+    editDiv.appendChild(editDel)
+    editDel.appendChild(edit)
+    editDel.appendChild(delet)
+    
     newHabit.appendChild(habitTitle)
     newHabit.appendChild(typeBtn)
     
-   edit.addEventListener('click', event => {
-       console.log(event)
-   })
+   
+   // function for dropdown box showing edit and delete
+  
+    dots.addEventListener('click', showDrop)
+
+   
+}
+
+function showDrop () {
+    document.getElementById('myDropdown').classList.toggle('show')
 }
 
 
