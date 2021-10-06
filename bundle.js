@@ -157,13 +157,15 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
    
    // function for dropdown box showing edit and delete
   
-    dots.addEventListener('click', showDrop)
+    dots.addEventListener('click', (e) => showDrop(e))
 
    
 }
 
-function showDrop () {
-    document.getElementById('myDropdown').classList.toggle('show')
+function showDrop (e) {
+    const target = e.target.closest('div')
+    console.log(target)
+    target.classList.toggle('show')
 }
 
 
