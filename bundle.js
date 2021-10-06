@@ -21,7 +21,7 @@ async function requestLogin(e) {
       };
       console.log('i made it')
       const r = await fetch(
-        `http://localhost:3000/auth/login/`,
+        `https://clockworkback.herokuapp.com/auth/login/`,
         options
       );
       console.log('im here too')
@@ -63,7 +63,7 @@ async function requestLogin(e) {
 		};
 		
 		const r = await fetch(
-			`http://localhost:3000/auth/register/`,
+			`https://clockworkback.herokuapp.com/auth/register/`,
 			options
 		);
 		const data = await r.json();

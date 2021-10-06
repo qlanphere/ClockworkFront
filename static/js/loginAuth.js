@@ -1,5 +1,5 @@
 const jwt_decode = require('jwt-decode');
-
+host = 'clockworkback.herokuapp.com'
 async function requestLogin(e) {
     e.preventDefault();
     // console.log("hello")
@@ -16,7 +16,7 @@ async function requestLogin(e) {
       };
       console.log('i made it')
       const r = await fetch(
-        `http://localhost:3000/auth/login/`,
+        `http://${host}/auth/login/`,
         options
       );
       console.log('im here too')
@@ -58,7 +58,7 @@ async function requestLogin(e) {
 		};
 		
 		const r = await fetch(
-			`http://localhost:3000/auth/register/`,
+			`http://${host}/auth/register/`,
 			options
 		);
 		const data = await r.json();

@@ -1,7 +1,7 @@
 const currentId =  1 //localStorage.getItem('id')
 console.log(currentId);
-const host = 'localhost'
-const port = 3000
+const host = 'clockworkback.herokuapp.com/'//'localhost'
+//const port = 3000
 const submitButton = document.getElementById('habitSubmit')
 submitButton.addEventListener('click', postHabit)
 
@@ -50,7 +50,7 @@ function postHabit(e) {
         userId: currentId
     }
     console.log(habitData)
-    const url = `http://${host}:${port}/habits`
+    const url = `http://${host}/habits`
     const options = {
         method: 'POST',
         mode: 'cors',
@@ -67,7 +67,7 @@ async function getHabits(e) {
 
     e.preventDefault()
 
-    let url = `http://${host}:${port}/habits/user/${currentId}`
+    let url = `http://${host}/habits/user/${currentId}`
 
     fetch(url)
     .then(r => r.json())
