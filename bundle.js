@@ -10,6 +10,9 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 const submitButton = document.getElementById('habitSubmit')
 submitButton.addEventListener('click', postHabit)
 
+window.addEventListener('DOMContentLoaded', getHabits)
+
+
 const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
@@ -25,7 +28,7 @@ function show() {
 const checkPositive = document.getElementById('positive')
 const frequency = document.querySelector('.frequency')
 
-checkPositive.addEventListener('click', getHabits)
+checkPositive.addEventListener('click', hide)
 
 function hide() {
     frequency.classList.toggle('hidden')
@@ -57,7 +60,8 @@ function postHabit(e) {
         userId: currentId
     }
     console.log(habitData)
-    const url = `https://${host}/habits/`
+    console.log(localStorage.getItem('token'))
+    const url = `https://${host}/habits `
     const options = {
         method: 'POST',
         mode: 'cors',
@@ -84,7 +88,7 @@ async function getHabits(e) {
                 }
     }
 
-    fetch(url,options)
+    fetch(url, options)
     .then(r => r.json())
 
     .then(data => {
@@ -106,13 +110,36 @@ async function getHabits(e) {
 function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
-    const habitTitle = document.createTextNode(habitName)
+    const edit = document.createElement('h2')
+    const habitTitle = document.createElement('h2')
+    const typeBtn = document.createElement('h2')
     const habitStart = document.createTextNode
-    habitBox.appendChild(newHabit)
-    newHabit.appendChild(habitTitle)
 
+    edit.textContent = "..."
+    habitTitle.textContent = habitName
     
+    if(habitType === true) {
+        typeBtn.textContent = '+'
+    } else {
+        typeBtn.textContent = '-'
+    }
+
+    newHabit.classList.add('habit-card')
+    edit.classList.add('edit')
+    typeBtn.classList.add('typeBtn')
+    habitTitle.classList.add('habitTitle')
+    
+    habitBox.appendChild(newHabit)
+    newHabit.appendChild(edit)
+    newHabit.appendChild(habitTitle)
+    newHabit.appendChild(typeBtn)
+    
+   edit.addEventListener('click', event => {
+       console.log(event)
+   })
 }
+
+
 
 function badgeChecker(badgePoints) {
     let badge
