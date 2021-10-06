@@ -9,6 +9,9 @@ const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
 
+const todaysDate = new Date()
+console.log(todaysDate.getDate)
+
 const showForm = document.getElementById('add-habit')
 showForm.addEventListener('click', show)
 
@@ -120,6 +123,38 @@ function badgeChecker(badgePoints) {
     }
     else badge = ""
     return badge
+}
+
+function deleteHabit(id) {
+    let url = `https://${host}/habits/${id}`
+    let options = {
+        method: "DELETE",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+}
+
+function editHabit(id, frequency, targetDate) {
+
+    let url = `https://${host}/habits/${id}`
+
+    updatedHabitInfo = {
+        "frequency": frequency,
+        "targetDate": targetDate
+    }
+
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                },
+        body: updatedHabitInfo
+    }
+    fetch(url,options)
 }
 
 module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
