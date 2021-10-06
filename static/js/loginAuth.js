@@ -16,7 +16,7 @@ async function requestLogin(e) {
       };
       console.log('i made it')
       const r = await fetch(
-        `http://${host}/auth/login/`,
+        `https://${host}/auth/login/`,
         options
       );
       console.log('im here too')
@@ -58,7 +58,7 @@ async function requestLogin(e) {
 		};
 		
 		const r = await fetch(
-			`http://${host}/auth/register/`,
+			`https://${host}/auth/register/`,
 			options
 		);
 		const data = await r.json();

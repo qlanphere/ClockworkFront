@@ -1,6 +1,6 @@
-const currentId =  1 //localStorage.getItem('id')
+const currentId = localStorage.getItem('id')
 console.log(currentId);
-const host = 'clockworkback.herokuapp.com/'//'localhost'
+const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
 const submitButton = document.getElementById('habitSubmit')
 submitButton.addEventListener('click', postHabit)
@@ -9,9 +9,11 @@ const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
 
-
+const showForm = document.getElementById('add-habit')
+showForm.addEventListener('click', show)
 
 function show() {
+    console.log('clicked')
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
@@ -50,12 +52,13 @@ function postHabit(e) {
         userId: currentId
     }
     console.log(habitData)
-    const url = `http://${host}/habits`
+    const url = `https://${host}/habits/`
     const options = {
         method: 'POST',
         mode: 'cors',
         headers: {
-            "Content-Type": "application/json",
+            
+            "authorization":localStorage.getItem('token')
         },
         body: JSON.stringify(habitData)
     }
@@ -67,9 +70,16 @@ async function getHabits(e) {
 
     e.preventDefault()
 
-    let url = `http://${host}/habits/user/${currentId}`
+    let url = `https://${host}/habits/user/${currentId}`
+    let options = {
+        method: "GET",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
 
-    fetch(url)
+    fetch(url,options)
     .then(r => r.json())
 
     .then(data => {
@@ -92,8 +102,11 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
     const habitTitle = document.createTextNode(habitName)
+    const habitStart = document.createTextNode
     habitBox.appendChild(newHabit)
     newHabit.appendChild(habitTitle)
+
+    
 }
 
 function badgeChecker(badgePoints) {
@@ -108,5 +121,7 @@ function badgeChecker(badgePoints) {
     else badge = ""
     return badge
 }
+
+module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
 
 
