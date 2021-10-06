@@ -40,8 +40,8 @@ footer {
     transition: 0.5s;
 }
 
-#habitEditPage.active {
-    display:none
+#habitEditPage.active2 {
+    bottom:0;
 }
 
 .habit-card { 
@@ -100,5 +100,9 @@ footer {
 
 .show {
     display: block;
+}
+
+.hidden {
+    display: hidden;
 }
   

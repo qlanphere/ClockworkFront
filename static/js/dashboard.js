@@ -1,9 +1,9 @@
 const currentId = localStorage.getItem('id')
-console.log(currentId);
+console.log(localStorage);
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
-const submitButton = document.getElementById('habitSubmit')
-submitButton.addEventListener('click', postHabit)
+// const submitButton = document.getElementById('habitSubmit')
+// submitButton.addEventListener('click', postHabit)
 
 window.addEventListener('DOMContentLoaded', getHabits)
 
@@ -12,21 +12,34 @@ const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
 
-const todaysDate = new Date()
-console.log(todaysDate.getDate)
+// const showForm = document.getElementById('add-habit')
+// showForm.addEventListener('click', show)
 
-const showForm = document.getElementById('add-habit')
-showForm.addEventListener('click', show)
 
 function show() {
     console.log('clicked')
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
-const checkPositive = document.getElementById('positive')
-const frequency = document.querySelector('.frequency')
+function showEdit(habitId) {
+    document.getElementById('habitEditPage').classList.toggle('active2')
+    const editSubmit = document.getElementById('editSubmit')
+    
+    editSubmit.addEventListener('click', () => {
+        const newFrequency = document.getElementById('frequencyEdit').value
+        const newTargetDate = document.getElementById('targetDateEdit').value.toString()
+       
+        editHabit(habitId, newFrequency, newTargetDate)
+    })
 
-checkPositive.addEventListener('click', hide)
+
+
+}
+
+// const checkPositive = document.getElementById('positive')
+// const frequency = document.querySelector('.frequency')
+
+// checkPositive.addEventListener('click', getHabits)
 
 function hide() {
     frequency.classList.toggle('hidden')
@@ -71,6 +84,7 @@ function postHabit(e) {
     }
     console.log(options.body)
     fetch(url, options)
+    .then(() => location.reload())
 }
 
 async function getHabits(e) {
@@ -117,7 +131,6 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     
     const habitTitle = document.createElement('h2')
     const typeBtn = document.createElement('h2')
-    const habitStart = document.createTextNode
 
     dots.textContent = "..."
     habitTitle.textContent = habitName
@@ -135,8 +148,10 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     typeBtn.classList.add('typeBtn')
     habitTitle.classList.add('habitTitle')
     editDiv.classList.add('dropdown')
+
     editDel.classList.add('dropdown-content')
     editDel.setAttribute('id','myDropdown')
+    edit.setAttribute('id', 'showEditForm')
     
     habitBox.appendChild(newHabit)
    
@@ -153,16 +168,21 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
    // function for dropdown box showing edit and delete
   
     dots.addEventListener('click', (e) => showDrop(e))
+    delet.addEventListener('click',() => deleteHabit(habitId))
+    edit.addEventListener('click', () => showEdit(habitId))
+ 
 
    
 }
 
 function showDrop (e) {
-    const target = e.target.closest('div > div')
-    console.log(e.target.closest)
-    target.classList.toggle('show')
-    console.log('pog')
+    const target = e.target.closest('div')
+    let child = target.querySelector('.dropdown-content')
+    console.log(target)
+    child.classList.toggle('show')
 }
+
+
 
 
 
@@ -179,10 +199,11 @@ function badgeChecker(badgePoints) {
     return badge
 }
 
-function deleteHabit(id) {
-    let url = `https://${host}/habits/${id}`
+function addBadgepoint(e){
+    e.preventDefault()
+    let url = `https://${host}/users/${currentId}/`
     let options = {
-        method: "DELETE",
+        method: "PATCH",
         mode: 'cors',
         headers: { "Content-Type": "application/json",
                     "authorization": localStorage.getItem('token')
@@ -191,13 +212,29 @@ function deleteHabit(id) {
     fetch(url,options)
 }
 
+function deleteHabit(id) {
+    let url = `https://${host}/habits/${id}`
+    let options = {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+    .then(() => location.reload())
+}
+
 function editHabit(id, frequency, targetDate) {
+    console.log(id)
+    console.log(frequency)
+    console.log(targetDate)
 
     let url = `https://${host}/habits/${id}`
 
     updatedHabitInfo = {
-        "frequency": frequency,
-        "targetDate": targetDate
+        frequency: frequency,
+        targetDate: targetDate
     }
 
     let options = {
@@ -206,11 +243,12 @@ function editHabit(id, frequency, targetDate) {
         headers: { "Content-Type": "application/json",
                     "authorization": localStorage.getItem('token')
                 },
-        body: updatedHabitInfo
+        body: JSON.stringify(updatedHabitInfo)
     }
     fetch(url,options)
+    .then(() => location.reload())
 }
 
-module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
+module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide, addBadgepoint, editHabit}
 
 
