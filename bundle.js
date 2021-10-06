@@ -163,9 +163,10 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
 }
 
 function showDrop (e) {
-    const target = e.target.closest('div')
-    console.log(target)
+    const target = e.target.closest('div > div')
+    console.log(e.target.closest)
     target.classList.toggle('show')
+    console.log('pog')
 }
 
 

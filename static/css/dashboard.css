@@ -29,6 +29,21 @@ footer {
     display:none
 }
 
+#habitEditPage {
+    position: fixed;
+    bottom: -100%;
+    background-color: aquamarine;
+    margin: 0;
+    z-index: 50;
+    box-sizing: border-box;
+    width: 80%;
+    transition: 0.5s;
+}
+
+#habitEditPage.active {
+    display:none
+}
+
 .habit-card { 
     display: flex;
     justify-content: space-evenly;
