@@ -46,41 +46,7 @@ async function requestLogin(e) {
   }
 
 
-// async function requestRegistration(e) {
-// 	e.preventDefault();
-// 	console.log("hello")	
-// 	console.log(e.target.usernameRegister.value);
-// 	console.log(e.target.passwordRegister.value);
-	// try {
-	// 	const options = {
-	// 		method: "POST",
-	// 		headers: { "Content-Type": "application/json" },
-	// 		body: JSON.stringify({
-	// 			username: e.target.usernameRegister.value,
-	// 			password: e.target.passwordRegister.value
-	// 		})
-	// 	};
-		
-	// 	const r = await fetch(
-	// 		`https://localhost:3000/auth/register`,
-	// 		options
-	// 	);
-	// 	const data = await r.json();
-	// 	if (data.err) {
-	// 		throw Error(data.err);
-	// 		return;
-	// 	}
-	// 	window.location.href = "../html/index.html";
-	// } catch (err) {
-	// 	console.warn(err);
-	// }
-// }
-
-
-module.exports = {requestLogin: requestLogin};
-
-},{"jwt-decode":1}],3:[function(require,module,exports){
-async function requestRegistration(e) {
+  async function requestRegistration(e) {
 	e.preventDefault();
 	// console.log("hello")	
 	// console.log(e.target.usernameRegister.value);
@@ -110,9 +76,42 @@ async function requestRegistration(e) {
 }
 
 
-module.exports = {requestRegistration:requestRegistration};
+module.exports = {requestLogin: requestLogin, requestRegistration: requestRegistration};
+
+},{"jwt-decode":1}],3:[function(require,module,exports){
+// async function requestRegistration(e) {
+// 	e.preventDefault();
+// 	// console.log("hello")	
+// 	// console.log(e.target.usernameRegister.value);
+// 	// console.log(e.target.passwordRegister.value);
+// 	try {
+// 		const options = {
+// 			method: "POST",
+// 			headers: { "Content-Type": "application/json" },
+// 			body: JSON.stringify({
+// 				"userName": e.target.usernameRegister.value,
+// 				"password": e.target.passwordRegister.value
+// 			})
+// 		};
+		
+// 		const r = await fetch(
+// 			`http://localhost:3000/auth/register/`,
+// 			options
+// 		);
+// 		const data = await r.json();
+// 		if (data.err) {
+// 			throw Error(data.err);
+// 		}
+// 		// window.location.replace("index.html");
+// 	} catch (err) {
+// 		console.warn(err);
+// 	}
+// }
+
+
+// module.exports = {requestRegistration:requestRegistration};
 },{}],4:[function(require,module,exports){
-const { requestRegistration, requestLogin } = require("./loginAuth");
+const { requestLogin, requestRegistration } = require("./loginAuth");
 
 const options = {
   linkSelector: "a",
@@ -135,7 +134,8 @@ window.addEventListener("load", () => {
     console.log("e" + e);  
     const pass = passwordMatch();
     if (pass){ 
-        console.log("hello hi")
+        // console.log("hello hi")
+        e.preventDefault();
         requestRegistration(e);
     }
     else {
