@@ -117,14 +117,11 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const editDel = document.createElement('div')
     const edit = document.createElement('a')
     const delet = document.createElement('a')
-    const id = document.createElement('p')
     
     const habitTitle = document.createElement('h2')
     const typeBtn = document.createElement('h2')
-    const habitStart = document.createTextNode
 
     dots.textContent = "..."
-    id.textContent = habitId
     habitTitle.textContent = habitName
     edit.textContent = "edit";
     delet.textContent = "delete"
@@ -134,7 +131,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     } else {
         typeBtn.textContent = '-'
     }
-    id.classList.add('hidden')
+
     newHabit.classList.add(`habit-card`)
     dots.classList.add('edit')
     typeBtn.classList.add('typeBtn')
@@ -151,7 +148,6 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     editDiv.appendChild(editDel)
     editDel.appendChild(edit)
     editDel.appendChild(delet)
-    editDel.appendChild(id)
     
     newHabit.appendChild(habitTitle)
     newHabit.appendChild(typeBtn)
@@ -161,6 +157,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
   
     dots.addEventListener('click', (e) => showDrop(e))
     delet.addEventListener('click',() => deleteHabit(habitId))
+    edit.addEventListener('click', () => editHabit(habitId))
 
    
 }
@@ -215,7 +212,7 @@ function deleteHabit(id) {
     .then(() => location.reload())
 }
 
-function editHabit(id, frequency, targetDate) {
+function editHabit(id) {
 
     let url = `https://${host}/habits/${id}`
 

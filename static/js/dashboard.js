@@ -117,7 +117,6 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const typeBtn = document.createElement('h2')
 
     dots.textContent = "..."
-    id.textContent = habitId
     habitTitle.textContent = habitName
     edit.textContent = "edit";
     delet.textContent = "delete"
@@ -144,7 +143,6 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     editDiv.appendChild(editDel)
     editDel.appendChild(edit)
     editDel.appendChild(delet)
-    editDel.appendChild(id)
     
     newHabit.appendChild(habitTitle)
     newHabit.appendChild(typeBtn)
