@@ -378,11 +378,15 @@ window.addEventListener("load", () => {
   if (showForm) {
     showForm.addEventListener("click", show);
   }
+  function hide() {
+    frequency.classList.toggle('hidden')
+
+}
 
   const checkPositive = document.getElementById("positive");
   const frequency = document.querySelector(".frequency");
   if (checkPositive) {
-    checkPositive.addEventListener("click", getHabits);
+    checkPositive.addEventListener("click", hide);
   }
 
   const badgeButton = document.getElementById("badgePoint");
