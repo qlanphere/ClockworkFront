@@ -5,6 +5,10 @@ const port = 3000
 const submitButton = document.getElementById('habitSubmit')
 submitButton.addEventListener('click', postHabit)
 
+const bronze = "../badges/Bronze.png"
+const silver = "../badges/Silver.png"
+const gold = "../badges/Gold.png"
+
 
 
 function show() {
@@ -90,6 +94,18 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const habitTitle = document.createTextNode(habitName)
     habitBox.appendChild(newHabit)
     newHabit.appendChild(habitTitle)
+}
+
+function badgeChecker(badgePoints) {
+    let badge
+    if (badgePoints > 50) {
+        badge = bronze
+    } if (badgePoints > 100) {
+        badge = silver
+    } if (badgePoints > 150) {
+        badge=gold
+    }
+    return badge
 }
 
 
