@@ -2,8 +2,8 @@ const currentId = localStorage.getItem('id')
 console.log(localStorage);
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
-const submitButton = document.getElementById('habitSubmit')
-submitButton.addEventListener('click', postHabit)
+// const submitButton = document.getElementById('habitSubmit')
+// submitButton.addEventListener('click', postHabit)
 
 window.addEventListener('DOMContentLoaded', getHabits)
 
@@ -12,21 +12,18 @@ const bronze = "../badges/Bronze.png"
 const silver = "../badges/Silver.png"
 const gold = "../badges/Gold.png"
 
-const todaysDate = new Date()
-console.log(todaysDate.getDate)
-
-const showForm = document.getElementById('add-habit')
-showForm.addEventListener('click', show)
+// const showForm = document.getElementById('add-habit')
+// showForm.addEventListener('click', show)
 
 function show() {
     console.log('clicked')
     document.getElementById('habitAddPage').classList.toggle('active')
 }
 
-const checkPositive = document.getElementById('positive')
-const frequency = document.querySelector('.frequency')
+// const checkPositive = document.getElementById('positive')
+// const frequency = document.querySelector('.frequency')
 
-checkPositive.addEventListener('click', hide)
+// checkPositive.addEventListener('click', getHabits)
 
 function hide() {
     frequency.classList.toggle('hidden')
@@ -186,6 +183,19 @@ function badgeChecker(badgePoints) {
     return badge
 }
 
+function addBadgepoint(e){
+    e.preventDefault()
+    let url = `https://${host}/users/${currentId}/`
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+}
+
 function deleteHabit(id) {
     let url = `https://${host}/habits/${id}`
     let options = {
@@ -219,6 +229,6 @@ function editHabit(id) {
     fetch(url,options)
 }
 
-module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide}
+module.exports = { badgeChecker, displayHabits, getHabits, postHabit, show, hide, addBadgepoint, editHabit}
 
 
