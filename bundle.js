@@ -26,11 +26,19 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-
+console.log('cry')
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
+    const editHabitCheck =  document.getElementById('habitEditPage')
     const editSubmit = document.getElementById('editSubmit')
+    const addHabit = document.getElementById('habitAddPage')
+    if (addHabit.classList.contains('active')){
+        show()
+    }
+
+
+
     
     editSubmit.addEventListener('click', () => {
         const newFrequency = document.getElementById('frequencyEdit').value
@@ -52,6 +60,11 @@ function showEdit(habitId) {
 
 function show() {
         console.log('clicked')
+        const habito = document.getElementById('habitAddPage')
+        const editHabit = document.getElementById('habitEditPage')
+        if (editHabit.classList.contains('active2') && !habito.classList.contains('active')) {
+            showEdit()
+        }
         document.getElementById('habitAddPage').classList.toggle('active')
     }
 
@@ -436,6 +449,10 @@ const options = {
 //animation library
 //var swup = new Swup(options);
 
+
+
+
+
 //Eventlisteners on submit buttons
 window.addEventListener("load", () => {
   const loginForm = document.getElementById("loginForm");
@@ -471,6 +488,37 @@ window.addEventListener("load", () => {
     frequency.classList.add('hidden')
 
 }
+
+
+const cancel = document.getElementById('cancel')
+
+if(cancel) {
+  cancel.addEventListener('click', () => {
+  let habitName = document.getElementById('habitName')
+  let frequency = document.getElementById('frequency')
+  let targetDate = document.getElementById('targetDate')
+  document.getElementById('habitAddPage').classList.toggle('active')
+  habitName.value = ""
+  frequency.value = ""
+  targetDate.value = ""
+
+}) 
+}
+
+const cancelEdit = document.getElementById('editCancel')
+if (cancelEdit) {
+  cancelEdit.addEventListener('click', () => {
+    let editFrequency = document.getElementById('frequencyEdit')
+    let editTargetDate = document.getElementById('targetDateEdit')
+    document.getElementById('habitEditPage').classList.toggle('active2')
+    editFrequency.value = ""
+    editTargetDate.value = ""
+  })
+}
+
+
+
+
 function unhide(){
   frequency.classList.remove('hidden')
 }

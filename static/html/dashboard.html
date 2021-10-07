@@ -29,9 +29,12 @@
            
         </div>
          <section id="habitAddPage">
-             <input type="submit" id = "habitSubmit">
-             <input id ="habitName" type='text' placeholder="enter habit">
-             <div class="posNeg">
+            <a id = "habitSubmit">Save</a>
+            <a id = "cancel">cancel</a>
+            
+            <div class="nameInputHolder">
+            <input id ="habitName" type='text' placeholder="enter habit">
+           </div>
                  <!-- positive element on the left negative on the right resolves boolean -->
                  <ul id="posOrNeg">
                  <li><input type="radio" name="Positive" id="positive" checked class="posOrNeg">Habit to start!</li>
@@ -62,12 +65,10 @@
              </div>
 
             <!-- badge point -->
-             <div class="badgePoints">
-                <button id="badgePoint">Click me if have doen this habit today</button>
-
-        </section>
+                    </section>
         <section id="habitEditPage">
-            <input type="submit" id = "editSubmit">
+            <a id = "editSubmit">Save</a>
+            <a id = "editCancel">cancel</a>
             
             <div class="frequency" >
                 <!-- input text with day/week/month selector  -->

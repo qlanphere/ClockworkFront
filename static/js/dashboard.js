@@ -21,11 +21,19 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-
+console.log('cry')
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
+    const editHabitCheck =  document.getElementById('habitEditPage')
     const editSubmit = document.getElementById('editSubmit')
+    const addHabit = document.getElementById('habitAddPage')
+    if (addHabit.classList.contains('active')){
+        show()
+    }
+
+
+
     
     editSubmit.addEventListener('click', () => {
         const newFrequency = document.getElementById('frequencyEdit').value
@@ -47,6 +55,11 @@ function showEdit(habitId) {
 
 function show() {
         console.log('clicked')
+        const habito = document.getElementById('habitAddPage')
+        const editHabit = document.getElementById('habitEditPage')
+        if (editHabit.classList.contains('active2') && !habito.classList.contains('active')) {
+            showEdit()
+        }
         document.getElementById('habitAddPage').classList.toggle('active')
     }
 
