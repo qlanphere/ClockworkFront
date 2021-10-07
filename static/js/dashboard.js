@@ -26,6 +26,14 @@ console.log('cry')
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
     const editSubmit = document.getElementById('editSubmit')
+    const addHabit = document.getElementById('habitAddPage')
+
+    if(addHabit.classList.contains('active')) {
+        show()
+    }
+
+
+
     
     editSubmit.addEventListener('click', () => {
         const newFrequency = document.getElementById('frequencyEdit').value
