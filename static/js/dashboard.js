@@ -5,7 +5,7 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-// window.addEventListener('DOMContentLoaded', getHabits)
+ window.addEventListener('DOMContentLoaded', getHabits)
 
 
 // const bronze = "../badges/Bronze.png"

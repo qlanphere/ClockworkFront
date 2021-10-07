@@ -10,7 +10,7 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-// window.addEventListener('DOMContentLoaded', getHabits)
+ window.addEventListener('DOMContentLoaded', getHabits)
 
 
 // const bronze = "../badges/Bronze.png"
@@ -20,20 +20,12 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
 
-<<<<<<< HEAD
 // function show() {
 //     console.log('clicked')
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
 
-=======
-
-function show() {
-    console.log('clicked')
-    document.getElementById('habitAddPage').classList.toggle('active')
-}
->>>>>>> 48c6dedfba8bab9309998b9b9f524a923c70d66b
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -203,7 +195,6 @@ function showDrop (e) {
 
 
 
-<<<<<<< HEAD
 // function badgeChecker(badgePoints) {
 //     let badge
 //     if (badgePoints > 50) {
@@ -216,22 +207,6 @@ function showDrop (e) {
 //     else badge = ""
 //     return badge
 // }
-=======
-
-
-function badgeChecker(badgePoints) {
-    let badge
-    if (badgePoints > 50) {
-        badge = bronze
-    } if (badgePoints > 100) {
-        badge = silver
-    } if (badgePoints > 150) {
-        badge=gold
-    }
-    else badge = ""
-    return badge
-}
->>>>>>> 48c6dedfba8bab9309998b9b9f524a923c70d66b
 
 function addBadgepoint(e){
     e.preventDefault()
