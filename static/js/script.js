@@ -8,8 +8,8 @@ const options = {
   debugMode: true,
 };
 
-//animation library
-//var swup = new Swup(options);
+
+// var swup = new Swup(options);
 
 
 
@@ -87,8 +87,7 @@ function unhide(){
   const posOrNeg = document.getElementById('posOrNeg')
   const checkPositive = document.getElementById('positive');
   const frequency = document.querySelector(".frequency");
-  
-  posOrNeg.addEventListener('click', ()=>{
+  if(posOrNeg) {posOrNeg.addEventListener('click', ()=>{
     console.log('hibiidy bidbioid')
     if(!checkPositive.checked) {
       hide()
@@ -96,7 +95,8 @@ function unhide(){
     else {
       unhide()
     }
-  })
+  })}
+  
   
   // const typeButton = document.getElementById('typeButton')
   // const badgeButton = document.getElementById("badgePoint");

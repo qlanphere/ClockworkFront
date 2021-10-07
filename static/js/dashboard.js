@@ -21,7 +21,7 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-console.log('cry')
+
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -42,7 +42,7 @@ function showEdit(habitId) {
         editHabit(habitId, newFrequency, newTargetDate)
     })
 
-
+ 
 
 }
 
@@ -61,6 +61,9 @@ function show() {
             showEdit()
         }
         document.getElementById('habitAddPage').classList.toggle('active')
+        
+    
+
     }
 
 function postHabit(e) {
@@ -122,6 +125,7 @@ function postHabit(e) {
 async function getHabits(e) {
     loadBadge()
     e.preventDefault()
+    
 
     let url = `https://${host}/habits/user/${currentId}`
     let options = {
@@ -145,13 +149,14 @@ async function getHabits(e) {
             let startDate = data[i].startDate
             let targetDate = data[i].targetDate
             let habitType = data[i].habitType
+            let streak = data[i].streak
 
-           displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType)
+           displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType, streak)
         }
     })
 }
 
-function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType) {
+function displayHabits(habitId, habitName, frequency, startDate, targetDate, habitType, streak) {
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
     
@@ -160,6 +165,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const editDel = document.createElement('div')
     const edit = document.createElement('a')
     const delet = document.createElement('a')
+    const streakDisplay = document.createElement('p')
     
     const habitTitle = document.createElement('h2')
     const typeBtn = document.createElement('h2')
@@ -168,6 +174,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     habitTitle.textContent = habitName
     edit.textContent = "edit";
     delet.textContent = "delete"
+    streakDisplay.textContent = streak
     
     if(habitType === true) {
         typeBtn.textContent = '+'
@@ -189,10 +196,12 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     habitBox.appendChild(newHabit)
    
     newHabit.appendChild(editDiv)
+    newHabit.appendChild(streakDisplay)
     editDiv.appendChild(dots)
     editDiv.appendChild(editDel)
     editDel.appendChild(edit)
     editDel.appendChild(delet)
+    
     
     newHabit.appendChild(habitTitle)
     newHabit.appendChild(typeBtn)
@@ -203,33 +212,36 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     dots.addEventListener('click', (e) => showDrop(e))
     delet.addEventListener('click',() => deleteHabit(habitId))
     edit.addEventListener('click', () => showEdit(habitId))
+
+
+    progressBar(habitId)
+
     
-    typeBtn.addEventListener('click', () => {
+    
+    // typeBtn.addEventListener('click', () => {
         if (typeBtn) {
             let count = 0;
-            let today = new Date();
-            let day = today.getDate();
-            let month = today.getMonth();
-            let year = today.getFullYear();
-            let todaysDate = `${year}-${month}-${day}`; //Maybe useless?
         
               typeBtn.addEventListener("click",(e) => {
-                let currentDate = new Date();
-                let currentTime = currentDate.getTime();
-                let firstClick = currentTime;
-                let secondsDay = 86400000;
-                let timeDiff = secondsDay - currentTime;
                 if(count === 0) {
                   count ++;
-                  
-                  addLastDoneDate(habitId)
+              
                   addBadgepoint(e)
+                  //addLastDoneDate(habitId)
+                    let currentDate = new Date()
+                    let updateInfo = {
+                        freqStreak: 1,
+                        lastDoneDate: currentDate
+                    }
+                    updateStreak(habitId, updateInfo)
+
                 } else {
                   console.log('stop pressing')
                 }
               } );
             }
-    })
+  //  }
+    //)
  
 
    
@@ -239,35 +251,56 @@ function showDrop (e) {
     const target = e.target.closest('div')
     let child = target.querySelector('.dropdown-content')
     console.log(target)
-    child.classList.toggle('show')
+    child.style.display = "block"
+    
 }
 
 
+  // Close the dropdown if the user clicks outside of it
+  function close_dropdown(myDropdown) {
+    console.log('I am closing dropdown:',myDropdown)
+    myDropdown.style.display = 'none'
+  }
+  
+  // Close all dropdowns.
+  function close_all_dropdowns() {
+    var dropdowns = document.getElementsByClassName('dropdown-content')
+    for (var i = 0; i < dropdowns.length; i++) {
+      close_dropdown(dropdowns[i]);
+    }
+  }
+  
+  // Close all dropdowns when clicking outside.
+  window.onclick = function (e) {
+    if (!e.target.matches('.edit')) {
+      close_all_dropdowns()
+    }
+  }
 
 
 
-function addLastDoneDate(id){
-    let url = `https://${host}/frequency/${id}`
-    const currentDate = new Date()
+// function addLastDoneDate(id){
+//     let url = `https://${host}/frequency/${id}`
+//     const currentDate = new Date()
     
 
-    data = {
-        lastDoneDate: currentDate
-    }
-    console.log(data)
+//     data = {
+//         lastDoneDate: currentDate
+//     }
+//     console.log(data)
 
-    let options = {
-        method: "PATCH",
-        mode: 'cors',
-        headers: { "Content-Type": "application/json",
-                    "authorization": localStorage.getItem('token')
-                },
-        body: JSON.stringify(data)
-    }
-    fetch(url,options)
-    .then(console.log('fetch succesful'))
+//     let options = {
+//         method: "PATCH",
+//         mode: 'cors',
+//         headers: { "Content-Type": "application/json",
+//                     "authorization": localStorage.getItem('token')
+//                 },
+//         body: JSON.stringify(data)
+//     }
+//     fetch(url,options)
+//     .then(console.log('fetch succesful'))
 
-}
+// }
 
 function addBadgepoint(e){
     e.preventDefault()
@@ -347,6 +380,85 @@ function editHabit(id, frequency, targetDate) {
     }
     fetch(url,options)
     .then(() => location.reload())
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+function progressBar(habitId) {
+     let period
+     let todaysDate = new Date()
+
+     let url = `https://${host}/frequency/${habitId}`
+     let options = {
+        method: "GET",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+
+    fetch(url,options)
+    .then(r=>r.json())
+    .then(data => {
+
+        console.log(data.freqStreak)
+
+        let period
+    if (data.frequencyType == 'daily') {
+          period = 1
+    } if (data.frequencyType == 'weekly') {
+         period = 7
+    } if (data.frequencyType == 'Monthly') {
+         period = 30
+    }
+        let difference = addDays(data.lastDoneDate,period)
+        console.log(difference<todaysDate)
+        if (difference > todaysDate && data.freqStreak >= data.frequency) {
+            let freqStreak = 0
+            let streak = 1
+
+            updatedFreqInfo = {
+                streak: streak,
+                freqStreak: freqStreak
+            }
+
+            updateStreak(habitId, updatedFreqInfo)
+
+        } 
+        
+        else if (difference < todaysDate && data.freqStreak < data.frequency) {
+            let freqStreak = 0
+            let streak = 0
+
+            updatedFreqInfo = {
+                streak: streak,
+                freqStreak: freqStreak
+            }
+    
+            updateStreak(habitId, updatedFreqInfo)
+        }
+        
+    })
+}
+
+function updateStreak(habitId, updatedFreqInfo) {
+    console.log('Will it go through')
+    let url = `https://${host}/frequency/${habitId}`
+    let options = {
+        method: "PATCH",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                },
+        body: JSON.stringify(updatedFreqInfo)
+    }
+    console.log('It has gone through')
+
+    fetch(url,options)
 }
 
 module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge}
