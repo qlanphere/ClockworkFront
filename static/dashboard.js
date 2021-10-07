@@ -477,17 +477,6 @@ function updateStreak(habitId, updatedFreqInfo) {
   fetch(url, options);
 }
 
-<<<<<<< HEAD:static/js/dashboard.js
-module.exports = {
-  displayHabits,
-  getHabits,
-  postHabit,
-  show,
-  addBadgepoint,
-  editHabit,
-  loadBadge,
-};
-=======
 function logout(e) {
     e.preventDefault();
     localStorage.clear();
@@ -497,4 +486,3 @@ function logout(e) {
 module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge, logout}
 
 
->>>>>>> 83abd71a2f58b3a416f4b0bda80ef52ece35582f:static/dashboard.js
