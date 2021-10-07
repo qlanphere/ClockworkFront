@@ -21,7 +21,7 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-
+console.log('cry')
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')

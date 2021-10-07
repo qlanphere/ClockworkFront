@@ -26,7 +26,7 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-
+console.log('cry')
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -105,7 +105,7 @@ function postHabit(e) {
     }
     console.log(options.body)
     fetch(url, options)
-    // .then(() => location.reload())
+    .then(() => location.reload())
 }
 
 async function getHabits(e) {
@@ -410,6 +410,10 @@ const options = {
 //animation library
 //var swup = new Swup(options);
 
+
+
+
+
 //Eventlisteners on submit buttons
 window.addEventListener("load", () => {
   const loginForm = document.getElementById("loginForm");
@@ -445,6 +449,26 @@ window.addEventListener("load", () => {
     frequency.classList.add('hidden')
 
 }
+
+
+const cancel = document.getElementById('cancel')
+
+if(cancel) {
+  cancel.addEventListener('click', () => {
+  let habitName = document.getElementById('habitName')
+  let frequency = document.getElementById('frequency')
+  let targetDate = document.getElementById('targetDate')
+  document.getElementById('habitAddPage').classList.toggle('active')
+  habitName.value = ""
+  frequency.value = ""
+  targetDate.value = ""
+
+}) 
+}
+
+
+
+
 function unhide(){
   frequency.classList.remove('hidden')
 }
