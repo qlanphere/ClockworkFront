@@ -677,7 +677,7 @@ function passwordMatch() {
   console.log(confirmPassword.value);
   if (passwordRegister.value !== confirmPassword.value) {
     popUp.classList.toggle("show");
-    confirmPassword.focus();
+    //confirmPassword.focus();
     return false;
   } else {
     return true;
