@@ -479,6 +479,17 @@ if(cancel) {
 }) 
 }
 
+const cancelEdit = document.getElementById('editCancel')
+if (cancelEdit) {
+  cancelEdit.addEventListener('click', () => {
+    let editFrequency = document.getElementById('frequencyEdit')
+    let editTargetDate = document.getElementById('targetDateEdit')
+    document.getElementById('habitEditPage').classList.toggle('active2')
+    editFrequency.value = ""
+    editTargetDate.value = ""
+  })
+}
+
 
 
 
