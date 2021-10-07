@@ -4,18 +4,19 @@
 
 },{}],2:[function(require,module,exports){
 const currentId = localStorage.getItem('id')
-console.log(localStorage);
+console.log(localStorage)
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
- window.addEventListener('DOMContentLoaded', getHabits)
+window.addEventListener('DOMContentLoaded', getHabits)
 
 
-// const bronze = "../badges/Bronze.png"
-// const silver = "../badges/Silver.png"
-// const gold = "../badges/Gold.png"
+
+const bronze = "../badges/Bronze.png"
+const silver = "../badges/Silver.png"
+const gold = "../badges/Gold.png"
 
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
@@ -47,10 +48,7 @@ function showEdit(habitId) {
 
 // checkPositive.addEventListener('click', getHabits)
 
-function hide() {
-    frequency.classList.toggle('hidden')
 
-}
 
 function show() {
         console.log('clicked')
@@ -64,6 +62,7 @@ function postHabit(e) {
     let targetDate = document.getElementById('targetDate').value
     let negative = document.getElementById('negative')
     let negValue 
+    let habitData
 
     console.log(negative.checked)
     
@@ -73,14 +72,25 @@ function postHabit(e) {
         negValue = true
     }
 
-        
-    const habitData = {
-        habitName: habitName,
-        frequency: frequency,
-        targetDate: targetDate,
-        habitType: negValue,
-        userId: currentId
+    if(frequency === "") {
+        habitData = {
+            habitName: habitName,
+            targetDate: targetDate,
+            habitType: negValue,
+            userId: currentId
+        }
+    } else {
+        habitData = {
+            habitName: habitName,
+            frequency: frequency,
+            targetDate: targetDate,
+            habitType: negValue,
+            userId: currentId
+        }
     }
+
+        
+     
     console.log(habitData)
     console.log(localStorage.getItem('token'))
     const url = `https://${host}/habits `
@@ -99,7 +109,7 @@ function postHabit(e) {
 }
 
 async function getHabits(e) {
-
+    loadBadge()
     e.preventDefault()
 
     let url = `https://${host}/habits/user/${currentId}`
@@ -163,6 +173,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     editDel.classList.add('dropdown-content')
     editDel.setAttribute('id','myDropdown')
     edit.setAttribute('id', 'showEditForm')
+    typeBtn.setAttribute('id', 'typeButton')
     
     habitBox.appendChild(newHabit)
    
@@ -181,6 +192,32 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     dots.addEventListener('click', (e) => showDrop(e))
     delet.addEventListener('click',() => deleteHabit(habitId))
     edit.addEventListener('click', () => showEdit(habitId))
+    
+    typeBtn.addEventListener('click', () => {
+        if (typeBtn) {
+            let count = 0;
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth();
+            let year = today.getFullYear();
+            let todaysDate = `${year}-${month}-${day}`;
+        
+              typeBtn.addEventListener("click",(e) => {
+                let currentDate = new Date();
+                let currentTime = currentDate.getTime();
+                let firstClick = currentTime;
+                let secondsDay = 86400000;
+                let timeDiff = secondsDay - currentTime;
+                if(count === 0) {
+                  count ++;
+                  
+                  addBadgepoint(e)
+                } else {
+                  console.log('stop pressing')
+                }
+              } );
+            }
+    })
  
 
    
@@ -195,18 +232,9 @@ function showDrop (e) {
 
 
 
-// function badgeChecker(badgePoints) {
-//     let badge
-//     if (badgePoints > 50) {
-//         badge = bronze
-//     } if (badgePoints > 100) {
-//         badge = silver
-//     } if (badgePoints > 150) {
-//         badge=gold
-//     }
-//     else badge = ""
-//     return badge
-// }
+
+
+
 
 function addBadgepoint(e){
     e.preventDefault()
@@ -219,8 +247,12 @@ function addBadgepoint(e){
                 }
     }
     fetch(url,options)
+  
+    
+}
 
-   
+function loadBadge() {
+    let url = `https://${host}/users/${currentId}/`
     let optionsBadge = {
         method: "GET",
         mode: 'cors',
@@ -228,11 +260,11 @@ function addBadgepoint(e){
                     "authorization": localStorage.getItem('token')
                 }
     }
-
     fetch(url, optionsBadge)
     .then(r => r.json())
     .then(data => {
         const currentBadgePoints = data.badgePoints;
+        console.log(currentBadgePoints)
         const badgeIcon = document.getElementById("badgeImage")
         if (currentBadgePoints > 150) {
             badgeIcon.src = "../../badges/Gold.png"
@@ -240,10 +272,11 @@ function addBadgepoint(e){
             badgeIcon.src = "../../badges/Silver.png"
         } else if (currentBadgePoints > 50) {
             badgeIcon.src = "../../badges/Bronze.png"
-            
         }
     })
 }
+
+
 
 function deleteHabit(id) {
     let url = `https://${host}/habits/${id}`
@@ -282,7 +315,7 @@ function editHabit(id, frequency, targetDate) {
     .then(() => location.reload())
 }
 
-module.exports = { displayHabits, getHabits, postHabit, show, hide, addBadgepoint, editHabit,deleteHabit}
+module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge}
 
 
 
@@ -408,40 +441,34 @@ window.addEventListener("load", () => {
   if (showForm) {
     showForm.addEventListener("click", show);
   }
+  function hide() {
+    frequency.classList.add('hidden')
 
-  const checkPositive = document.getElementById("positive");
+}
+function unhide(){
+  frequency.classList.remove('hidden')
+}
+  const posOrNeg = document.getElementById('posOrNeg')
+  const checkPositive = document.getElementById('positive');
   const frequency = document.querySelector(".frequency");
-  if (checkPositive) {
-    checkPositive.addEventListener("click", getHabits);
-  }
-
-  const badgeButton = document.getElementById("badgePoint");
-  if (badgeButton) {
-    let count = 0;
-    let today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let todaysDate = `${year}-${month}-${day}`;
-
-      badgeButton.addEventListener("click",(e) => {
-        let currentDate = new Date();
-        let currentTime = currentDate.getTime();
-        let firstClick = currentTime;
-        let secondsDay = 86400000;
-        let timeDiff = secondsDay - currentTime;
-        if(count === 0) {
-          count ++;
-          
-          addBadgepoint(e)
-        } else {
-          console.log('stop pressing')
-        }
-      } );
-    }});
+  
+  posOrNeg.addEventListener('click', ()=>{
+    console.log('hibiidy bidbioid')
+    if(!checkPositive.checked) {
+      hide()
+    }
+    else {
+      unhide()
+    }
+  })
+  
+  // const typeButton = document.getElementById('typeButton')
+  // const badgeButton = document.getElementById("badgePoint");
+  
+  });
 
 // Hiding the registration form when the page loads
-document.addEventListener("DOMContenLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   hideRegistrationForm();
 });

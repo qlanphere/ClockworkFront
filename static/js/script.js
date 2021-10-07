@@ -42,40 +42,34 @@ window.addEventListener("load", () => {
   if (showForm) {
     showForm.addEventListener("click", show);
   }
+  function hide() {
+    frequency.classList.add('hidden')
 
-  const checkPositive = document.getElementById("positive");
+}
+function unhide(){
+  frequency.classList.remove('hidden')
+}
+  const posOrNeg = document.getElementById('posOrNeg')
+  const checkPositive = document.getElementById('positive');
   const frequency = document.querySelector(".frequency");
-  if (checkPositive) {
-    checkPositive.addEventListener("click", getHabits);
-  }
-
-  const badgeButton = document.getElementById("badgePoint");
-  if (badgeButton) {
-    let count = 0;
-    let today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let todaysDate = `${year}-${month}-${day}`;
-
-      badgeButton.addEventListener("click",(e) => {
-        let currentDate = new Date();
-        let currentTime = currentDate.getTime();
-        let firstClick = currentTime;
-        let secondsDay = 86400000;
-        let timeDiff = secondsDay - currentTime;
-        if(count === 0) {
-          count ++;
-          
-          addBadgepoint(e)
-        } else {
-          console.log('stop pressing')
-        }
-      } );
-    }});
+  
+  posOrNeg.addEventListener('click', ()=>{
+    console.log('hibiidy bidbioid')
+    if(!checkPositive.checked) {
+      hide()
+    }
+    else {
+      unhide()
+    }
+  })
+  
+  // const typeButton = document.getElementById('typeButton')
+  // const badgeButton = document.getElementById("badgePoint");
+  
+  });
 
 // Hiding the registration form when the page loads
-document.addEventListener("DOMContenLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   hideRegistrationForm();
 });
