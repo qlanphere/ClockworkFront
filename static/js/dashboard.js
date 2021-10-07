@@ -1,11 +1,11 @@
 const currentId = localStorage.getItem('id')
-console.log(localStorage);
+console.log(localStorage)
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-// window.addEventListener('DOMContentLoaded', getHabits)
+window.addEventListener('DOMContentLoaded', getHabits)
 
 
 

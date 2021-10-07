@@ -4,13 +4,13 @@
 
 },{}],2:[function(require,module,exports){
 const currentId = localStorage.getItem('id')
-console.log(localStorage);
+console.log(localStorage)
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-// window.addEventListener('DOMContentLoaded', getHabits)
+window.addEventListener('DOMContentLoaded', getHabits)
 
 
 
@@ -105,7 +105,7 @@ function postHabit(e) {
     }
     console.log(options.body)
     fetch(url, options)
-    .then(() => location.reload())
+    // .then(() => location.reload())
 }
 
 async function getHabits(e) {
@@ -468,7 +468,7 @@ function unhide(){
   });
 
 // Hiding the registration form when the page loads
-document.addEventListener("DOMContenLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   hideRegistrationForm();
 });

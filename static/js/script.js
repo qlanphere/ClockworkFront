@@ -69,7 +69,7 @@ function unhide(){
   });
 
 // Hiding the registration form when the page loads
-document.addEventListener("DOMContenLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   hideRegistrationForm();
 });
