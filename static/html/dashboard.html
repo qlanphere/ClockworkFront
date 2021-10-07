@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script defer src="../../bundle.js"></script>
     <title>Main Page </title>
 </head>
@@ -12,38 +15,64 @@
     
     <!-- navbar / sign out options -->
     <header></header>
+<section class="container">
     <!-- Profile section, user icon, badge and progress bar  -->
     <section id='profile-area'>
-        <div id='userIcon'></div>
+        <div id='userIcon'>
+            <h2>Welcome Back!</h2>
+            <img src="" alt="" >
+        </div>
         <div id='badgeProgress'></div>
         <div id="badgeIcon"><img id="badgeImage" height="100" width="100"></div>
     </section>
 
     <!-- Habit area + streak progress bars  -->
     <section id='habit-container'>
-        <button id="add-habit">toggle</button>
+        
     </section> 
     <!-- Add new habit button  -->
+
+    <div class ="fixedAddBtn diamond-shape" id="add-habit">
+        <div class="item-count" >+</div>
+    </div>
     <footer>
-        <div>
-           
-        </div>
+        
          <section id="habitAddPage">
+            <div class = "coloredSection">
+            <div class ="saveCancel">
             <a id = "habitSubmit">Save</a>
-            <a id = "cancel">cancel</a>
-            
-            <div class="nameInputHolder">
+            <a id = "cancel">Cancel</a>
+            </div>
+            <div id="nameInputHolder">
+            <p class ="habitNameTxt">Habit Name</p>
             <input id ="habitName" type='text' placeholder="enter habit">
            </div>
+        </div>
                  <!-- positive element on the left negative on the right resolves boolean -->
                  <ul id="posOrNeg">
                  <li><input type="radio" name="Positive" id="positive" checked class="posOrNeg">Habit to start!</li>
                  <li><input type="radio" name="Positive" id="negative" class="posOrNeg">Habit to Quit!</li>
                 </ul>
+                <h4>Habit to start or to Quit ?</h3>
+                <div id= "icons">
+                <label for="positive">
+                <div id ="posCircle" class="circle">
+                    <p class="plusIcon">+</p>
+                </div>
+            </label>
+            <label for="negative">
+                <div id ="negCircle" class="circle">
+                    <p class="minusIcon">-</p>
+                </div>
+            </label>
+        </div>
+
              </div>
              <div class="frequency" >
                  <!-- input text with day/week/month selector  -->
-                 <p> How many times do you want to do this habit? 
+                 <h4>How Often?</h4>
+                 
+                 <div class="freqRow">
                  <input type="text" placeholder="#" id="frequency"> 
                  <ul id = "frequencyType">
                     <li><input value = "daily" id="daily" type="radio" name="frequency" checked>Daily</li>
@@ -51,6 +80,7 @@
                     <li><input value = "monthly" id="monthly" type="radio" name="frequency">Monthly</li>
 
                 </ul>
+            </div>
              </div>
              <div class="target date" >
                  <!-- date selector -->
@@ -65,7 +95,7 @@
              </div>
 
             <!-- badge point -->
-                    </section>
+        </section>
         <section id="habitEditPage">
             <a id = "editSubmit">Save</a>
             <a id = "editCancel">cancel</a>
@@ -92,6 +122,6 @@
 
        </section>
     </footer>
-
+</section>
 </body>
 </html>

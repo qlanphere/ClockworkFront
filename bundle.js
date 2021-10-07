@@ -59,7 +59,7 @@ function showEdit(habitId) {
 
 
 function show() {
-        console.log('clicked')
+        // console.log('clicked')
         const habito = document.getElementById('habitAddPage')
         const editHabit = document.getElementById('habitEditPage')
         if (editHabit.classList.contains('active2') && !habito.classList.contains('active')) {
@@ -257,7 +257,7 @@ function showDrop (e) {
 
   // Close the dropdown if the user clicks outside of it
   function close_dropdown(myDropdown) {
-    console.log('I am closing dropdown:',myDropdown)
+    // console.log('I am closing dropdown:',myDropdown)
     myDropdown.style.display = 'none'
   }
   
