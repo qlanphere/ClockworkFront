@@ -16,6 +16,7 @@
     <section id='profile-area'>
         <div id='userIcon'></div>
         <div id='badgeProgress'></div>
+        <div id="badgeIcon"><img id="badgeImage" height="100" width="100"></div>  
     </section>
     <!-- Habit area + streak progress bars  -->
     <section id='habit-container'>
@@ -31,16 +32,21 @@
              <input id ="habitName" type='text' placeholder="enter habit">
              <div class="posNeg">
                  <!-- positive element on the left negative on the right resolves boolean -->
-                 <input type="checkbox" name="Positive" id="positive" checked>
-                 <input type="checkbox" name="Negative" id="negative">
+                 <ul id="posOrNeg">
+                 <li><input type="radio" name="Positive" id="positive" checked class="posOrNeg">Habit to start!</li>
+                 <li><input type="radio" name="Positive" id="negative" class="posOrNeg">Habit to Quit!</li>
+                </ul>
              </div>
              <div class="frequency" >
                  <!-- input text with day/week/month selector  -->
                  <p> How many times do you want to do this habit? 
-                 <input type="text" placeholder="#" id="frequency"> <span>per</span>
-                 <span class="day">Day</span>
-                 <span class="week">Week</span>
-                 <span class="month">Month</span>
+                 <input type="text" placeholder="#" id="frequency"> 
+                 <ul>
+                    <li><input id="daily" type="radio" name="frequency" checked>Daily</li>
+                    <li><input id="weekly" type="radio" name="frequency">Weekly</li>
+                    <li><input id="monthly" type="radio" name="frequency">Monthly</li>
+
+                </ul>
              </div>
              <div class="target date" >
                  <!-- date selector -->
@@ -59,10 +65,16 @@
             <div class="frequency" >
                 <!-- input text with day/week/month selector  -->
                 <p> How many times do you want to do this habit? 
-                <input type="text" placeholder="#" id="frequencyEdit"> <span>per</span>
-                <span class="day">Day</span>
+                <input type="text" placeholder="#" id="frequencyEdit"> 
+                <ul>
+                    <li><input id="daily" type="radio">Daily</li>
+                    <li><input id="weekly" type="radio">Weekly</li>
+                    <li><input id="monthly" type="radio">Monthly</li>
+
+                </ul>
+                <!-- <span class="day">Day</span>
                 <span class="week">Week</span>
-                <span class="month">Month</span>
+                <span class="month">Month</span> -->
             </div>
             <div class="target date" >
                 <!-- date selector -->
