@@ -491,6 +491,15 @@ module.exports = {
   editHabit,
   loadBadge,
 };
+function logout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace('index.html');
+}
+
+module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge, logout}
+
+
 
 },{}],3:[function(require,module,exports){
 const jwt_decode = require('jwt-decode');
@@ -572,7 +581,7 @@ module.exports = {requestLogin: requestLogin, requestRegistration: requestRegist
 },{"jwt-decode":1}],4:[function(require,module,exports){
 
 const { requestLogin, requestRegistration } = require("./loginAuth");
-const { addBadgepoint, postHabit, show, getHabits } = require("./dashboard");
+const { addBadgepoint, postHabit, show, getHabits, logout } = require("./dashboard");
 
 
 const options = {
@@ -622,6 +631,11 @@ window.addEventListener("load", () => {
     frequency.classList.add('hidden')
 
 }
+
+const logoutButton = document.getElementById("logOut");
+  if(logoutButton) {
+    logoutButton.addEventListener('click', logout);
+  }
 
 
 const cancel = document.getElementById('cancel')
@@ -699,7 +713,7 @@ function passwordMatch() {
   console.log(confirmPassword.value);
   if (passwordRegister.value !== confirmPassword.value) {
     popUp.classList.toggle("show");
-    confirmPassword.focus();
+    //confirmPassword.focus();
     return false;
   } else {
     return true;
@@ -708,7 +722,6 @@ function passwordMatch() {
 function hideRegistrationForm() {
   registerForm.classList.add("hideForm");
 }
-
 
 
 // // event listener for badgepoint
