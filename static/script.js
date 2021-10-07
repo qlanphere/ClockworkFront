@@ -1,6 +1,6 @@
 
 const { requestLogin, requestRegistration } = require("./loginAuth");
-const { addBadgepoint, postHabit, show, getHabits, logout } = require("./dashboard");
+const { addBadgepoint, postHabit, show, getHabits,  } = require("./dashboard");
 
 
 const options = {
@@ -51,10 +51,10 @@ window.addEventListener("load", () => {
 
 }
 
-const logoutButton = document.getElementById("logOut");
-  if(logoutButton) {
-    logoutButton.addEventListener('click', logout);
-  }
+// const logoutButton = document.getElementById("logOut");
+//   if(logoutButton) {
+//     logoutButton.addEventListener('click', logout);
+//   }
 
 
 const cancel = document.getElementById('cancel')

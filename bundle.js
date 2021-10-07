@@ -165,6 +165,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const habitBox = document.getElementById('habit-container')
     const newHabit = document.createElement('div')
     
+    const editNameStreak = document.createElement('div')
     const editDiv = document.createElement('div')
     const dots = document.createElement('h2')
     const editDel = document.createElement('div')
@@ -173,18 +174,19 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const streakDisplay = document.createElement('p')
     
     const habitTitle = document.createElement('h2')
-    const typeBtn = document.createElement('h2')
+    const typeBtn = document.createElement('div')
+    const plus = document.createElement('h1')
 
     dots.textContent = "..."
     habitTitle.textContent = habitName
     edit.textContent = "edit";
     delet.textContent = "delete"
-    streakDisplay.textContent = streak
+    streakDisplay.textContent = `Current streak:   ${streak}🔥`
     
     if(habitType === true) {
-        typeBtn.textContent = '+'
+        plus.textContent = '+'
     } else {
-        typeBtn.textContent = '-'
+        plus.textContent = '-'
     }
 
     newHabit.classList.add(`habit-card`)
@@ -192,6 +194,10 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     typeBtn.classList.add('typeBtn')
     habitTitle.classList.add('habitTitle')
     editDiv.classList.add('dropdown')
+    editNameStreak.classList.add('editNameStreak')
+    plus.classList.add('plusTings')
+
+
 
     editDel.classList.add('dropdown-content')
     editDel.setAttribute('id','myDropdown')
@@ -200,16 +206,22 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     
     habitBox.appendChild(newHabit)
    
-    newHabit.appendChild(editDiv)
-    newHabit.appendChild(streakDisplay)
+    newHabit.appendChild(editNameStreak)
+    
+    
+    editNameStreak.appendChild(editDiv)
+    editNameStreak.appendChild(habitTitle)
+    editNameStreak.appendChild(streakDisplay)
+    
     editDiv.appendChild(dots)
     editDiv.appendChild(editDel)
     editDel.appendChild(edit)
     editDel.appendChild(delet)
     
     
-    newHabit.appendChild(habitTitle)
+    
     newHabit.appendChild(typeBtn)
+    typeBtn.appendChild(plus)
     
    
    // function for dropdown box showing edit and delete
@@ -556,7 +568,7 @@ module.exports = {requestLogin: requestLogin, requestRegistration: requestRegist
 },{"jwt-decode":1}],4:[function(require,module,exports){
 
 const { requestLogin, requestRegistration } = require("./loginAuth");
-const { addBadgepoint, postHabit, show, getHabits, logout } = require("./dashboard");
+const { addBadgepoint, postHabit, show, getHabits,  } = require("./dashboard");
 
 
 const options = {
@@ -607,10 +619,10 @@ window.addEventListener("load", () => {
 
 }
 
-const logoutButton = document.getElementById("logOut");
-  if(logoutButton) {
-    logoutButton.addEventListener('click', logout);
-  }
+// const logoutButton = document.getElementById("logOut");
+//   if(logoutButton) {
+//     logoutButton.addEventListener('click', logout);
+//   }
 
 
 const cancel = document.getElementById('cancel')
