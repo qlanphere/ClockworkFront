@@ -33,7 +33,7 @@
             <a id = "cancel">cancel</a>
             
             <div class="nameInputHolder">
-            <input id ="habitName" type='text' placeholder="enter habit">
+            <input id ="habitName" type='text' placeholder="enter habit" minlength="3" maxlength="50">
            </div>
                  <!-- positive element on the left negative on the right resolves boolean -->
                  <ul id="posOrNeg">
@@ -44,7 +44,7 @@
              <div class="frequency" >
                  <!-- input text with day/week/month selector  -->
                  <p> How many times do you want to do this habit? 
-                 <input type="text" placeholder="#" id="frequency"> 
+                 <input type="text" placeholder="#" id="frequency" minlength="1"> 
                  <ul id = "frequencyType">
                     <li><input value = "daily" id="daily" type="radio" name="frequency" checked>Daily</li>
                     <li><input value = "weekly" id="weekly" type="radio" name="frequency">Weekly</li>
@@ -73,7 +73,7 @@
             <div class="frequency" >
                 <!-- input text with day/week/month selector  -->
                 <p> How many times do you want to do this habit? 
-                <input type="text" placeholder="#" id="frequencyEdit"> 
+                <input type="text" placeholder="#" id="frequencyEdit" minlength="1"> 
                 <ul>
                     <li><input id="daily" name="frequencyEdit" type="radio">Daily</li>
                     <li><input id="weekly" name="frequencyEdit" type="radio">Weekly</li>

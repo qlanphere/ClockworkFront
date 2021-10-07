@@ -27,9 +27,9 @@
         <div class="formDiv"></div>
         <fieldset>
           <h2>Sign Up!</h2>
-          <input class="username" id="usernameRegister" type="text" placeholder="Enter Username" required/>
-          <input class="password" id = "passwordRegister" type="password" placeholder="Enter Password"required/>
-          <input class="password" id="confirmPassword" type="password" placeholder="Confirm Password" required/>
+          <input class="username" id="usernameRegister" type="text" placeholder="Enter Username" minlength="6" maxlength="50" required/>
+          <input class="password" id = "passwordRegister" type="password" placeholder="Enter Password" minlength="6" maxlength="255" required/>
+          <input class="password" id="confirmPassword" type="password" placeholder="Confirm Password" minlength="6" maxlength="255" required/>
           <div class="popup" >
             <span class="popuptext" id="passwordPopup">The passwords do not match!</span>
           </div>
