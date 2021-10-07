@@ -26,7 +26,7 @@ const gold = "../badges/Gold.png"
 //     document.getElementById('habitAddPage').classList.toggle('active')
 // }
 
-console.log('cry')
+
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -47,7 +47,7 @@ function showEdit(habitId) {
         editHabit(habitId, newFrequency, newTargetDate)
     })
 
-
+ 
 
 }
 
@@ -66,6 +66,9 @@ function show() {
             showEdit()
         }
         document.getElementById('habitAddPage').classList.toggle('active')
+        
+    
+
     }
 
 function postHabit(e) {
@@ -124,6 +127,7 @@ function postHabit(e) {
 async function getHabits(e) {
     loadBadge()
     e.preventDefault()
+    
 
     let url = `https://${host}/habits/user/${currentId}`
     let options = {
@@ -205,6 +209,8 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     dots.addEventListener('click', (e) => showDrop(e))
     delet.addEventListener('click',() => deleteHabit(habitId))
     edit.addEventListener('click', () => showEdit(habitId))
+
+    
     
     typeBtn.addEventListener('click', () => {
         if (typeBtn) {
@@ -240,10 +246,31 @@ function showDrop (e) {
     const target = e.target.closest('div')
     let child = target.querySelector('.dropdown-content')
     console.log(target)
-    child.classList.toggle('show')
+    child.style.display = "block"
+    
 }
 
 
+  // Close the dropdown if the user clicks outside of it
+  function close_dropdown(myDropdown) {
+    console.log('I am closing dropdown:',myDropdown)
+    myDropdown.style.display = 'none'
+  }
+  
+  // Close all dropdowns.
+  function close_all_dropdowns() {
+    var dropdowns = document.getElementsByClassName('dropdown-content')
+    for (var i = 0; i < dropdowns.length; i++) {
+      close_dropdown(dropdowns[i]);
+    }
+  }
+  
+  // Close all dropdowns when clicking outside.
+  window.onclick = function (e) {
+    if (!e.target.matches('.edit')) {
+      close_all_dropdowns()
+    }
+  }
 
 
 
