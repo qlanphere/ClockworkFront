@@ -48,9 +48,10 @@ footer {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
 }
 
-#habitSubmit {
+#habitSubmit, #editSubmit {
     margin-left: 10px;
     margin-top: .5rem;
     background-color: rgb(228, 228, 228);
@@ -58,15 +59,20 @@ footer {
     border-radius: 5px;
 }
 
-#habitSubmit:hover, #cancel:hover {
+#habitSubmit:hover, #cancel:hover, #editSubmit:hover, #editCancel:hover {
     color: rgb(123, 176, 255);
     cursor: pointer;
 }
 
-#cancel {
+#cancel, #editCancel {
     margin-right: 10px;
     margin-top: .5rem;
 }
+
+#editSubmit {
+    margin-bottom: 3px ;
+}
+
 
 #nameInputHolder {
     width: 97%;
@@ -76,6 +82,7 @@ footer {
     background-color: white;
     border-radius: 5px 5px 0px 0px;
 }
+
 .habitNameTxt {
     font-size: 10px;
     margin: 0.5px 0px 0px 5px ;
@@ -101,19 +108,23 @@ footer {
 }
 #icons {
     margin-bottom: 3px;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .plusIcon, .minusIcon {
     color: rgba(248, 169, 100, 1);
 }
 
-#frequency {
+#frequency, #frequencyEdit {
     width: 30px;
 }
+.h4{
+    margin-bottom: 0;
+}
+.h5{margin-bottom: 5px;}
 
 .freqRow {
     display: flex;
@@ -126,6 +137,25 @@ footer {
     display: inline;
 }
 
+#editFreqList li {
+    display: inline;
+}
+
+.target-date {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: flex-start
+   
+    
+}
+#targetDate, #targetDateEdit {
+    margin-bottom: 10px;
+}
+
+
+
+
 #habitAddPage.active {
     bottom:0; 
 }
@@ -137,12 +167,18 @@ footer {
 #habitEditPage {
     position: fixed;
     bottom: -100%;
-    background-color: aquamarine;
+    right: 30%;
+    background-color: rgb(233, 233, 233);
     margin: 0;
-    z-index: 50;
+    z-index: 10;
     box-sizing: border-box;
-    width: 80%;
+    width: 40%;
     transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
 }
 
 #habitEditPage.active2 {
@@ -215,8 +251,8 @@ footer {
   
 .circle { 
     background-color: white;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     border: 2px hotpink;
     display: flex;
@@ -244,7 +280,9 @@ footer {
     transform: rotate(-45deg);
     vertical-align: middle;
     width:60px;
-    border: 1px solid transparent
+    border: 1px solid transparent;
+    margin-right: -5px;
+    
     
     
 

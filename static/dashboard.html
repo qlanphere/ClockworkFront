@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script defer src="../../bundle.js"></script>
+    <script defer src="../bundle.js"></script>
     <title>Main Page </title>
 </head>
 <body>
@@ -26,6 +26,10 @@
         <div id="badgeIcon"><img id="badgeImage" height="100" width="100"></div>
     </section>
 
+    <section>
+        <button id="logOut">Logout</button>
+    </section>
+
     <!-- Habit area + streak progress bars  -->
     <section id='habit-container'>
         
@@ -41,7 +45,7 @@
             <div class = "coloredSection">
             <div class ="saveCancel">
             <a id = "habitSubmit">Save</a>
-            <h2>Add a Habit</h2>
+            <h3 class="h4">Add a Habit!</h3>
             <a id = "cancel">Cancel</a>
             </div>
             <div id="nameInputHolder">
@@ -49,12 +53,13 @@
             <input id ="habitName" type='text' placeholder="enter habit">
            </div>
         </div>
-                 <!-- positive element on the left negative on the right resolves boolean -->
+                <section class="uniform width"></section>
+        <!-- positive element on the left negative on the right resolves boolean -->
                  <ul id="posOrNeg">
                  <li><input type="radio" name="Positive" id="positive" checked class="posOrNeg">Habit to start!</li>
                  <li><input type="radio" name="Positive" id="negative" class="posOrNeg">Habit to Quit!</li>
                 </ul>
-                <h4>Habit to start or to Quit ?</h3>
+                <h4>Habit to start or to Quit?</h3>
                 <div id= "icons">
                 <label for="positive">
                 <div id ="posCircle" class="circle">
@@ -83,11 +88,12 @@
                 </ul>
             </div>
              </div>
-             <div class="target date" >
+             <div class="target-date" >
                  <!-- date selector -->
-                 <p>set a target</p>
+                 <h4>Set a target</h4>
                  <input type="date" id ="targetDate">
              </div>
+            </section>
 
              <!-- Badgepoint button
              <div class="badgePoints">
@@ -98,28 +104,35 @@
             <!-- badge point -->
         </section>
         <section id="habitEditPage">
+            <div class = "saveCancel coloredSection">
             <a id = "editSubmit">Save</a>
+            <h3 class="h5">Edit Habit</h3>
             <a id = "editCancel">cancel</a>
-            
+            </div>
+            <section class="uniform width">
             <div class="frequency" >
                 <!-- input text with day/week/month selector  -->
-                <p> How many times do you want to do this habit? 
-                <input type="text" placeholder="#" id="frequencyEdit"> 
-                <ul>
+                <h4>How Often?</h4> 
+                
+                <div class="freqRow">
+                    <input type="text" placeholder="#" id="frequencyEdit" minlength="1"> 
+                <ul id=editFreqList>
                     <li><input id="daily" name="frequencyEdit" type="radio">Daily</li>
                     <li><input id="weekly" name="frequencyEdit" type="radio">Weekly</li>
                     <li><input id="monthly" name="frequencyEdit" type="radio">Monthly</li>
 
                 </ul>
+            </div>
                 <!-- <span class="day">Day</span>
                 <span class="week">Week</span>
                 <span class="month">Month</span> -->
             </div>
-            <div class="target date" >
+            <div class="targetDate" >
                 <!-- date selector -->
-                <p>set a target</p>
+                <h4>Set a target</h4>
                 <input type="date" id ="targetDateEdit">
             </div>
+        </section>
 
        </section>
     </footer>
