@@ -8,8 +8,8 @@ const options = {
   debugMode: true,
 };
 
-//animation library
-//var swup = new Swup(options);
+
+// var swup = new Swup(options);
 
 
 
