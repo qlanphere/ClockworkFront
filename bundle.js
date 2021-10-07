@@ -10,7 +10,7 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-window.addEventListener('DOMContentLoaded', getHabits)
+// window.addEventListener('DOMContentLoaded', getHabits)
 
 
 
@@ -21,11 +21,12 @@ const gold = "../badges/Gold.png"
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
 
+// function show() {
+//     console.log('clicked')
+//     document.getElementById('habitAddPage').classList.toggle('active')
+// }
 
-function show() {
-    console.log('clicked')
-    document.getElementById('habitAddPage').classList.toggle('active')
-}
+
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -48,6 +49,11 @@ function showEdit(habitId) {
 // checkPositive.addEventListener('click', getHabits)
 
 
+
+function show() {
+        console.log('clicked')
+        document.getElementById('habitAddPage').classList.toggle('active')
+    }
 
 function postHabit(e) {
     e.preventDefault();
@@ -391,8 +397,10 @@ async function requestLogin(e) {
 module.exports = {requestLogin: requestLogin, requestRegistration: requestRegistration};
 
 },{"jwt-decode":1}],4:[function(require,module,exports){
+
 const { requestLogin, requestRegistration } = require("./loginAuth");
 const { addBadgepoint, postHabit, show, getHabits } = require("./dashboard");
+
 
 const options = {
   linkSelector: "a",
@@ -493,16 +501,11 @@ function hideRegistrationForm() {
   registerForm.classList.add("hideForm");
 }
 
-// Shows the registration form when the sign up link is clicked
-// const signUp = document.querySelector('a')
-// signUp.addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     showRegistration();
-// });
-// function showRegistration(){
-//     registerForm.classList.remove('hideForm')
-//     loginForm.classList.add('hideForm')
-// }
+
+
+// // event listener for badgepoint
+// const badgeButton  = document.getElementById("badgePoint")
+// badgeButton.addEventListener("click",addBadgepoint);
 
 // event listener for badgepoint
 

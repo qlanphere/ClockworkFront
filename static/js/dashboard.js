@@ -5,7 +5,7 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // const submitButton = document.getElementById('habitSubmit')
 // submitButton.addEventListener('click', postHabit)
 
-window.addEventListener('DOMContentLoaded', getHabits)
+// window.addEventListener('DOMContentLoaded', getHabits)
 
 
 
@@ -16,11 +16,12 @@ const gold = "../badges/Gold.png"
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
 
+// function show() {
+//     console.log('clicked')
+//     document.getElementById('habitAddPage').classList.toggle('active')
+// }
 
-function show() {
-    console.log('clicked')
-    document.getElementById('habitAddPage').classList.toggle('active')
-}
+
 
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
@@ -43,6 +44,11 @@ function showEdit(habitId) {
 // checkPositive.addEventListener('click', getHabits)
 
 
+
+function show() {
+        console.log('clicked')
+        document.getElementById('habitAddPage').classList.toggle('active')
+    }
 
 function postHabit(e) {
     e.preventDefault();
