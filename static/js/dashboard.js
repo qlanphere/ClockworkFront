@@ -55,6 +55,10 @@ function showEdit(habitId) {
 
 function show() {
         console.log('clicked')
+        const editHabit = document.getElementById('habitEditPage')
+        if (editHabit.classList.contains('active2')) {
+            showEdit()
+        }
         document.getElementById('habitAddPage').classList.toggle('active')
     }
 
