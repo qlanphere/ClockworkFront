@@ -97,7 +97,8 @@ function postHabit(e) {
             habitName: habitName,
             targetDate: targetDate,
             habitType: negValue,
-            userId: currentId
+            userId: currentId,
+            lastDoneDate: new Date()
         }
     } else {
         habitData = {
@@ -106,7 +107,8 @@ function postHabit(e) {
             targetDate: targetDate,
             habitType: negValue,
             userId: currentId,
-            frequencyType: frequencyType
+            frequencyType: frequencyType,
+            lastDoneDate: new Date()
         }
     }
 
@@ -126,7 +128,7 @@ function postHabit(e) {
     }
     console.log(options.body)
     fetch(url, options)
-    .then(() => location.reload())
+     .then(() => location.reload())
 }
 
 async function getHabits(e) {
