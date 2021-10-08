@@ -261,6 +261,23 @@ footer {
     background-color: rgba(248, 169, 100, 1);
 }
 
+#myDropdown {
+    
+    margin-top: -20px;
+    margin-left: -18px;
+}
+
+#showEditForm:hover {
+    background-color: rgb(211, 210, 210);
+}
+
+.delet:hover {
+    background-color: rgb(211, 210, 210);
+}
+.editDel:hover {
+    cursor: pointer;
+}
+
 .typeBtn {
     width: 20%;
     height: 50px;

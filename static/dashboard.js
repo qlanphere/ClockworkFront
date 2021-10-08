@@ -196,6 +196,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     plus.classList.add('plusTings')
     streakDisplay.classList.add('streakDisplay')
     editDel.classList.add('editDel')
+    delet.classList.add('delet')
 
 
 
