@@ -79,11 +79,16 @@ function selectPos () {
   
 }
 
-// const logoutButton = document.getElementById("logOut");
-//   if(logoutButton) {
-//     logoutButton.addEventListener('click', logout);
-//   }
+const logoutButton = document.getElementById("logOut");
+  if(logoutButton) {
+    logoutButton.addEventListener('click', logout);
+  }
 
+  function logout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace('index.html');
+}
 
 const cancel = document.getElementById('cancel')
 

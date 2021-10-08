@@ -493,12 +493,8 @@ function updateStreak(habitId, updatedFreqInfo) {
     fetch(url,options)
 }
 
-function logout(e) {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.replace('index.html');
-}
 
-module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge, logout}
+
+module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge}
 
 

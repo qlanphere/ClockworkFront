@@ -21,6 +21,7 @@ nav {
     border-radius: 0 0 5px 5px;
 }
 
+
 body {
     display: flex;
     justify-content: center;
@@ -411,9 +412,7 @@ footer {
     /* border:1px solid red; */
 }
 
-.all-habits {
-    margin-left: 15px;
-}
+
 .usrImage {
     width: 90px;
     margin-bottom: 10px;

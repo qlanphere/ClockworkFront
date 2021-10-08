@@ -498,13 +498,9 @@ function updateStreak(habitId, updatedFreqInfo) {
     fetch(url,options)
 }
 
-function logout(e) {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.replace('index.html');
-}
 
-module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge, logout}
+
+module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge}
 
 
 
@@ -667,11 +663,16 @@ function selectPos () {
   
 }
 
-// const logoutButton = document.getElementById("logOut");
-//   if(logoutButton) {
-//     logoutButton.addEventListener('click', logout);
-//   }
+const logoutButton = document.getElementById("logOut");
+  if(logoutButton) {
+    logoutButton.addEventListener('click', logout);
+  }
 
+  function logout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace('index.html');
+}
 
 const cancel = document.getElementById('cancel')
 
