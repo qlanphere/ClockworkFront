@@ -51,10 +51,10 @@ window.addEventListener("load", () => {
 
 }
 
-// const logoutButton = document.getElementById("logOut");
-//   if(logoutButton) {
-//     logoutButton.addEventListener('click', logout);
-//   }
+const logoutButton = document.getElementById("logOut");
+  if(logoutButton) {
+    logoutButton.addEventListener('click', logout);
+  }
 
 
 const cancel = document.getElementById('cancel')

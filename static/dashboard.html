@@ -19,13 +19,22 @@
     <!-- Profile section, user icon, badge and progress bar  -->
     <section id='profile-area'>
         <div id='userIcon'>
-            <h2>Welcome Back!</h2>
-            <img src="" alt="" >
+            <h2>Hey <span id="insertUsername"></span>!</h2>
+            <img  class="usrImage" src="Untitled-12.png" alt="" >
         </div>
-        <div id='badgeProgress'></div>
-        <div id="badgeIcon"><img id="badgeImage" height="100" width="100"></div>
-    </section>
+        <div id='badgeProgress'>
+            
 
+        </div>
+        <div id="badgeIcon"><img id="badgeImage" height="100" width="100">
+            <p id= "badgeId"></p> 
+        </div>
+
+    </section>
+    <div id="myProgress">
+        <div id="myBar"></div>
+      </div>
+    
     <section>
         <button id="logOut">Logout</button>
     </section>
@@ -33,7 +42,7 @@
     <!-- Habit area + streak progress bars  -->
     <section id='habit-container'>
 
-        <h3> All Habits </h3>
+        <h3 class="all-habits"> All Habits </h3>
         
     </section> 
     <!-- Add new habit button  -->
@@ -41,6 +50,8 @@
     <div class ="fixedAddBtn diamond-shape" id="add-habit">
         <div class="item-count" >+</div>
     </div>
+
+    
     <footer>
         
          <section id="habitAddPage">

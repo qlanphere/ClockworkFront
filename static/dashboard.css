@@ -195,7 +195,8 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin: 10px;
-    width: 80%;
+    width: 100%; 
+    /* 80% width if we can get the progress bars in */
     height: 50px;
     background-color: rgb(235, 235, 235);
     border-radius: 5px;
@@ -208,13 +209,17 @@ footer {
     height: 50px;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
+    width: 76%;
 }
 
 .habitTitle {
     margin: 0;
-    font-size: 20px;
+    font-size: 12px;
 
+}
+
+.streakDisplay {
+    font-size: 12px;
 }
 
 .edit {
@@ -360,7 +365,7 @@ footer {
     width: 50%;
     display: flex;
     justify-content: center;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     flex-direction: column;
     
 }
@@ -368,7 +373,52 @@ footer {
 #profile-area { 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    border:1px solid red;
+    height: 190px;
+    /* border:1px solid red; */
 }
 
+.all-habits {
+    margin-left: 15px;
+}
+.usrImage {
+    width: 90px;
+    margin-bottom: 10px;
+}
+
+#userIcon { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+#badgeIcon {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+#badgeImage {
+    width: 70px;
+    height: 70px;
+}
+#badgeId {
+    font-size: 12px;
+    margin-top: 1px;
+}
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+    margin-bottom: 15px;
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #04AA6D;
+  }

@@ -1,4 +1,5 @@
 const currentId = localStorage.getItem('id')
+const usersname = localStorage.getItem('username')
 console.log(localStorage)
 const host = 'clockworkback.herokuapp.com'//'localhost'
 //const port = 3000
@@ -124,6 +125,7 @@ function postHabit(e) {
 
 async function getHabits(e) {
     loadBadge()
+    document.getElementById('insertUsername').textContent = ` ${usersname}`;
     e.preventDefault()
     
 
@@ -191,6 +193,8 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     editDiv.classList.add('dropdown')
     editNameStreak.classList.add('editNameStreak')
     plus.classList.add('plusTings')
+    streakDisplay.classList.add('streakDisplay')
+    editDel.classList.add('editDel')
 
 
 
@@ -202,6 +206,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     habitBox.appendChild(newHabit)
    
     newHabit.appendChild(editNameStreak)
+    
     
     
     editNameStreak.appendChild(editDiv)
@@ -344,13 +349,27 @@ function loadBadge() {
     .then(data => {
         const currentBadgePoints = data.badgePoints;
         console.log(currentBadgePoints)
+        console.log((currentBadgePoints / 50) + "%")
         const badgeIcon = document.getElementById("badgeImage")
+        const badgeTxt = document.getElementById('badgeId')
+        const proBar = document.getElementById('myBar')
         if (currentBadgePoints > 150) {
-            badgeIcon.src = "../../badges/Gold.png"
-        } else if (currentBadgePoints > 100) {
-            badgeIcon.src = "../../badges/Silver.png"
-        } else if (currentBadgePoints > 50) {
-            badgeIcon.src = "../../badges/Bronze.png"
+            badgeIcon.src = "../badges/Gold.png"
+            badgeTxt.textContent = "Gold 🍾"
+            proBar.style.width = 100 + '%'
+            proBar.style.backgroundColor = "#e9d310"
+        } else if (currentBadgePoints >= 100) {
+            badgeIcon.src = "../badges/Silver.png"
+            badgeTxt.textContent = "Silver ✨"
+            proBar.style.width = (((currentBadgePoints-100) / 50)*100) + "%"
+        } else if (currentBadgePoints >= 50) {
+            badgeIcon.src = "../badges/Bronze.png"
+            badgeTxt.textContent = "Bronze 👏"
+            proBar.style.width = (((currentBadgePoints-50) / 50)*100) + "%"
+        } else if (currentBadgePoints < 50) {
+            badgeIcon.src = "../badges/no-badge.png"
+            badgeTxt.textContent = "No badge, level up more! 🏃‍♂️"
+            proBar.style.width = ((currentBadgePoints / 50)*100) + "%"
         }
     })
 }
