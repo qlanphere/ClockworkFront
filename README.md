@@ -1,7 +1,7 @@
 # ClockworkBack
 
-The client side for a web app that allows you to track your habits.
-(https://cl0ckwork.netlify.app/)[https://cl0ckwork.netlify.app/]
+The client side for a web app that allows you to track your habits. 
+https://cl0ckwork.netlify.app/
 
 ## Installation & Usage
 
