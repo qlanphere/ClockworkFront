@@ -79,16 +79,17 @@ function selectPos () {
   
 }
 
-const logoutButton = document.getElementById("logOut");
-  if(logoutButton) {
-    logoutButton.addEventListener('click', logout);
-  }
+// const logoutButton = document.getElementById("logOut");
+//   if(logoutButton) {
+//     logoutButton.addEventListener('click', logout);
+//   }
 
 
 const cancel = document.getElementById('cancel')
 
 if(cancel) {
   cancel.addEventListener('click', () => {
+    console.log('cancelled')
   let habitName = document.getElementById('habitName')
   let frequency = document.getElementById('frequency')
   let targetDate = document.getElementById('targetDate')
