@@ -190,11 +190,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     delet.textContent = "delete"
     streakDisplay.textContent = `Current streak:   ${streak}🔥`
     
-    if(habitType === true) {
-        plus.textContent = '+'
-    } else {
-        plus.textContent = '-'
-    }
+   
     progressDiv.classList.add('progressBar')
     newHabit.classList.add(`habit-card`)
     dots.classList.add('edit')
@@ -234,6 +230,13 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     
     newHabit.appendChild(typeBtn)
     typeBtn.appendChild(plus)
+
+    if(habitType === true) {
+        plus.textContent = '+'
+    } else {
+        plus.textContent = '-'
+        
+    }
     
    //progress baar code - 8/10/21
     let url = `https://${host}/frequency/${habitId}`;
@@ -250,8 +253,9 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
         .then((data) => {
           const mainProgressDiv = document.createElement("div");
           const innerProgressDiv = document.createElement("div");
-          mainProgressDiv.style.width = "100%";
+          mainProgressDiv.style.width = "98%";
           mainProgressDiv.style.backgroundColor = "lightgrey";
+          mainProgressDiv.classList.add('progress')
           innerProgressDiv.textContent = "0%";
           innerProgressDiv.style.width = "0%";
           innerProgressDiv.style.backgroundColor = "green";
@@ -261,9 +265,22 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
           "freqstreak:" + data.freqStreak + "frequency" + data.frequency //+ "percent" + percent
           );
           if (data.frequency != 0) {
-            let percent = Math.round((data.freqStreak / data.frequency) * 100);
-            innerProgressDiv.style.width = percent + "%";
+            let percent 
+
+
+            if(percent !== 100) {
+                percent = Math.round((data.freqStreak / data.frequency) * 100)
+                innerProgressDiv.style.width = percent + "%";
+                
+            } else {
+                percent = 100
+                innerProgressDiv.style.width = 100 + '%'
+            }
+           
+           
             innerProgressDiv.textContent = percent + "%";
+
+           
           }
         })
     ///end of progress bar code
@@ -296,11 +313,13 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
                         lastDoneDate: currentDate
                     }
                     updateStreak(habitId, updateInfo)
+                    setTimeout(() => {  location.reload()}, 50)
 
                 } else {
                   console.log('stop pressing')
                 }
-              } );
+                
+                } );
             }
   //  }
     //)

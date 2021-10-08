@@ -228,8 +228,14 @@ footer {
     height: 50px;
     background-color: rgb(235, 235, 235);
     border-radius: 5px;
+
 }
 
+.progress{
+    width: 50%;
+    margin-left: 10px;
+    margin-right: -10px;
+}
 .editNameStreak {
     display: flex;
     flex-direction:row;
