@@ -28,7 +28,7 @@ https://cl0ckwork.netlify.app/
  - Created basic structure of html pages without css
  - Worked on the JavaScript files to fetch from server and adding basic functionalities
  - Added CSS
- - Deployed front end to netlify (https://cl0ckwork.netlify.app/)[https://cl0ckwork.netlify.app/] 
+ - Deployed front end to netlify https://cl0ckwork.netlify.app/ 
 
  <!-- ^ change -->
 
