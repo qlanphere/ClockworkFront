@@ -492,14 +492,15 @@ function progressBar(habitId) {
          period = 30
     }
         let difference = addDays(data.lastDoneDate,period)
-        console.log(difference<todaysDate)
+        console.log(difference, todaysDate, data.lastDoneDate)
         if (difference > todaysDate && data.freqStreak >= data.frequency) {
             let freqStreak = 0
             let streak = 1
 
             updatedFreqInfo = {
                 streak: streak,
-                freqStreak: freqStreak
+                freqStreak: freqStreak,
+                lastDoneDate: new Date()
             }
 
             updateStreak(habitId, updatedFreqInfo)
@@ -509,6 +510,7 @@ function progressBar(habitId) {
         else if (difference < todaysDate && data.freqStreak < data.frequency) {
             let freqStreak = 0
             let streak = 0
+            console.log("dont go here ")
 
             updatedFreqInfo = {
                 streak: streak,
