@@ -177,6 +177,8 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     const typeBtn = document.createElement('div')
     const plus = document.createElement('h1')
 
+    const progressDiv = document.createElement("div")
+
     dots.textContent = "..."
     habitTitle.textContent = habitName
     edit.textContent = "edit";
@@ -188,7 +190,7 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     } else {
         plus.textContent = '-'
     }
-
+    progressDiv.classList.add('progressBar')
     newHabit.classList.add(`habit-card`)
     dots.classList.add('edit')
     typeBtn.classList.add('typeBtn')
@@ -207,7 +209,8 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     edit.setAttribute('id', 'showEditForm')
     typeBtn.setAttribute('id', 'typeButton')
     
-    habitBox.appendChild(newHabit)
+    habitBox.appendChild(progressDiv)
+    progressDiv.appendChild(newHabit)
    
     newHabit.appendChild(editNameStreak)
     
@@ -227,7 +230,40 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
     newHabit.appendChild(typeBtn)
     typeBtn.appendChild(plus)
     
-   
+   //progress baar code - 8/10/21
+    let url = `https://${host}/frequency/${habitId}`;
+      let options = {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("token"),
+        },
+      };
+      fetch(url, options)
+        .then((r) => r.json())
+        .then((data) => {
+          const mainProgressDiv = document.createElement("div");
+          const innerProgressDiv = document.createElement("div");
+          mainProgressDiv.style.width = "100%";
+          mainProgressDiv.style.backgroundColor = "lightgrey";
+          innerProgressDiv.textContent = "0%";
+          innerProgressDiv.style.width = "0%";
+          innerProgressDiv.style.backgroundColor = "green";
+          progressDiv.append(mainProgressDiv);
+          mainProgressDiv.append(innerProgressDiv);
+          console.log(
+          "freqstreak:" + data.freqStreak + "frequency" + data.frequency //+ "percent" + percent
+          );
+          if (data.frequency != 0) {
+            let percent = Math.round((data.freqStreak / data.frequency) * 100);
+            innerProgressDiv.style.width = percent + "%";
+            innerProgressDiv.textContent = percent + "%";
+          }
+        })
+    ///end of progress bar code
+
+
    // function for dropdown box showing edit and delete
   
     dots.addEventListener('click', (e) => showDrop(e))
