@@ -10,9 +10,9 @@ window.addEventListener('DOMContentLoaded', getHabits)
 
 
 
-const bronze = "../badges/Bronze.png"
-const silver = "../badges/Silver.png"
-const gold = "../badges/Gold.png"
+const bronze = "./badges/Bronze.png"
+const silver = "./badges/Silver.png"
+const gold = "./badges/Gold.png"
 
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
@@ -413,20 +413,20 @@ function loadBadge() {
         const badgeTxt = document.getElementById('badgeId')
         const proBar = document.getElementById('myBar')
         if (currentBadgePoints > 150) {
-            badgeIcon.src = "../badges/Gold.png"
+            badgeIcon.src = "./badges/Gold.png"
             badgeTxt.textContent = "Gold 🍾"
             proBar.style.width = 100 + '%'
             proBar.style.backgroundColor = "#e9d310"
         } else if (currentBadgePoints >= 100) {
-            badgeIcon.src = "../badges/Silver.png"
+            badgeIcon.src = "./badges/Silver.png"
             badgeTxt.textContent = "Silver✨"
             proBar.style.width = (((currentBadgePoints-100) / 50)*100) + "%"
         } else if (currentBadgePoints >= 50) {
-            badgeIcon.src = "../badges/Bronze.png"
+            badgeIcon.src = "./badges/Bronze.png"
             badgeTxt.textContent = "Bronze 👏"
             proBar.style.width = (((currentBadgePoints-50) / 50)*100) + "%"
         } else if (currentBadgePoints < 50) {
-            badgeIcon.src = "../badges/no-badge.png"
+            badgeIcon.src = "./badges/no-badge.png"
             badgeTxt.textContent = "No badge, level up more! 🏃‍♂️"
             proBar.style.width = ((currentBadgePoints / 50)*100) + "%"
         }
