@@ -2,12 +2,33 @@
     box-sizing: border-box;
 }
 
+.clockwork {
+    margin-left: 10px;
+}
+
+#logOut {
+    margin-right: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 169, 100, 1);
+    height: 40px;
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+}
+
 body {
     display: flex;
     justify-content: center;
     height: 100%; 
     font-family: 'Roboto', sans-serif;
     background-color: rgb(247, 247, 247);
+    margin: 0; 
+    width: 100%;
 }
 
 
@@ -92,6 +113,7 @@ footer {
     width: 100%;
     border: none; 
     height: 2rem;
+    box-shadow: 1px 1px;
     
     
 }
@@ -192,6 +214,7 @@ footer {
 
 .habit-container {
     background-color: rgba(248, 169, 100, 1);
+    margin-top: 0;
 }
 
 .habit-card { 
@@ -199,7 +222,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin: 10px;
-    width: 100%; 
+    width: 98%; 
     /* 80% width if we can get the progress bars in */
     height: 50px;
     background-color: rgb(235, 235, 235);
@@ -375,6 +398,7 @@ footer {
     justify-content: center;
     /* border: 1px solid blue; */
     flex-direction: column;
+    
     
 }
 
