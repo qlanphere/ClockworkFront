@@ -24,6 +24,7 @@ const gold = "../badges/Gold.png"
 
 
 
+
 function showEdit(habitId) {
     document.getElementById('habitEditPage').classList.toggle('active2')
     const editHabitCheck =  document.getElementById('habitEditPage')
@@ -360,7 +361,7 @@ function loadBadge() {
             proBar.style.backgroundColor = "#e9d310"
         } else if (currentBadgePoints >= 100) {
             badgeIcon.src = "../badges/Silver.png"
-            badgeTxt.textContent = "Silver ✨"
+            badgeTxt.textContent = "Silver✨"
             proBar.style.width = (((currentBadgePoints-100) / 50)*100) + "%"
         } else if (currentBadgePoints >= 50) {
             badgeIcon.src = "../badges/Bronze.png"

@@ -51,6 +51,34 @@ window.addEventListener("load", () => {
 
 }
 
+const posCircle = document.getElementById('posCircle')
+const negCircle = document.getElementById('negCircle')
+posCircle.addEventListener('click', selectPos)
+negCircle.addEventListener('click', selectPos)
+
+function selectPos () {
+  
+  const isPositive = document.getElementById('positive')
+  console.log(isPositive.checked)
+  
+  const plusIcon = document.querySelector('.plusIcon')
+  const minusIcon = document.querySelector('.minusIcon')
+  setTimeout(() => {
+    if(isPositive.checked) {
+    posCircle.classList.add('selectedCircle')
+    negCircle.classList.remove('selectedCircle')
+    plusIcon.classList.add('selectedIcon')
+    minusIcon.classList.remove('selectedIcon')
+
+}else {
+    negCircle.classList.add('selectedCircle')
+    posCircle.classList.remove('selectedCircle')
+    minusIcon.classList.add('selectedIcon')
+    plusIcon.classList.remove('selectedIcon')
+}}, 10)
+  
+}
+
 const logoutButton = document.getElementById("logOut");
   if(logoutButton) {
     logoutButton.addEventListener('click', logout);

@@ -119,6 +119,10 @@ footer {
     color: rgba(248, 169, 100, 1);
 }
 
+.selectedIcon {
+    color: white;
+}
+
 #frequency, #frequencyEdit {
     width: 30px;
 }
@@ -306,6 +310,10 @@ footer {
     font-weight: 800;
     
     }
+
+.selectedCircle {
+    background-color: rgba(248, 169, 100, 1);
+}
 
   .diamond-shape {
     background: rgba(248, 169, 100, 1);;
