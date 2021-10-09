@@ -1,3 +1,5 @@
+const dayjs = require('dayjs')
+
 const currentId = localStorage.getItem('id')
 const usersname = localStorage.getItem('username')
 console.log(localStorage)
@@ -7,12 +9,6 @@ const host = 'clockworkback.herokuapp.com'//'localhost'
 // submitButton.addEventListener('click', postHabit)
 
 window.addEventListener('DOMContentLoaded', getHabits)
-
-
-
-const bronze = "./badges/Bronze.png"
-const silver = "./badges/Silver.png"
-const gold = "./badges/Gold.png"
 
 // const showForm = document.getElementById('add-habit')
 // showForm.addEventListener('click', show)
@@ -75,6 +71,8 @@ function postHabit(e) {
     let targetDate = document.getElementById('targetDate').value
     let negative = document.getElementById('negative')
     let frequencyType = document.querySelector('input[name="frequency"]:checked').value;
+
+    let periodStart = dayjs().format('DD/MM/YYYY')
     
     let negValue 
     let habitData
@@ -86,6 +84,7 @@ function postHabit(e) {
     } else {
         negValue = true
     }
+    
 
     if(frequency === "") {
         habitData = {
@@ -93,7 +92,7 @@ function postHabit(e) {
             targetDate: targetDate,
             habitType: negValue,
             userId: currentId,
-            lastDoneDate: new Date()
+            periodStart: periodStart
         }
     } else {
         habitData = {
@@ -103,7 +102,7 @@ function postHabit(e) {
             habitType: negValue,
             userId: currentId,
             frequencyType: frequencyType,
-            lastDoneDate: new Date()
+            periodStart: periodStart
         }
     }
 
@@ -302,10 +301,9 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
               
                   addBadgepoint(e)
                   //addLastDoneDate(habitId)
-                    let currentDate = new Date()
+
                     let updateInfo = {
                         freqStreak: 1,
-                        lastDoneDate: currentDate
                     }
                     updateStreak(habitId, updateInfo)
                     setTimeout(() => {  location.reload()}, 50)
@@ -355,28 +353,7 @@ function showDrop (e) {
 
 
 
-// function addLastDoneDate(id){
-//     let url = `https://${host}/frequency/${id}`
-//     const currentDate = new Date()
-    
 
-//     data = {
-//         lastDoneDate: currentDate
-//     }
-//     console.log(data)
-
-//     let options = {
-//         method: "PATCH",
-//         mode: 'cors',
-//         headers: { "Content-Type": "application/json",
-//                     "authorization": localStorage.getItem('token')
-//                 },
-//         body: JSON.stringify(data)
-//     }
-//     fetch(url,options)
-//     .then(console.log('fetch succesful'))
-
-// }
 
 function addBadgepoint(e){
     e.preventDefault()
@@ -479,8 +456,7 @@ function addDays(date, days) {
   }
 
 function progressBar(habitId) {
-     let period
-     let todaysDate = new Date()
+     let todaysDate = dayjs().format('DD/MM/YYYY')
 
      let url = `https://${host}/frequency/${habitId}`
      let options = {
@@ -495,7 +471,6 @@ function progressBar(habitId) {
     .then(r=>r.json())
     .then(data => {
 
-        console.log(data.freqStreak)
 
         let period
     if (data.frequencyType == 'daily') {
@@ -505,32 +480,37 @@ function progressBar(habitId) {
     } if (data.frequencyType == 'Monthly') {
          period = 30
     }
-        let difference = addDays(data.lastDoneDate,period)
-        console.log(difference, todaysDate, data.lastDoneDate)
+         let periodEnd = dayjs(data.periodStart).add(period, 'month').format('MM/DD/YYYY')
+         
+        // console.log(difference, todaysDate, data.lastDoneDate)
 
-
-        if (difference > todaysDate && data.freqStreak >= data.frequency) {
+        //console.log(dayjs(data.periodStart).format('MM-DD-YYYY'))
+        console.log(periodEnd >= todaysDate && data.freqStreak >= data.frequency && !data.streakAdded)
+        if (periodEnd >= todaysDate && data.freqStreak >= data.frequency && !data.streakAdded) {
             let freqStreak = 0
             let streak = 1
+            let streakAdded = true
 
             updatedFreqInfo = {
                 streak: streak,
                 freqStreak: freqStreak,
-                lastDoneDate: new Date()
+                streakAdded: streakAdded
             }
 
             updateStreak(habitId, updatedFreqInfo)
 
         } 
         
-        else if (difference < todaysDate && data.freqStreak < data.frequency) {
+        if (periodEnd <= todaysDate && !data.streakAdded) {
             let freqStreak = 0
             let streak = 0
+            let periodStart = dayjs().format('DD/MM/YYYY')
             console.log("dont go here ")
 
             updatedFreqInfo = {
                 streak: streak,
-                freqStreak: freqStreak
+                freqStreak: freqStreak,
+                periodStart: periodStart
             }
     
             updateStreak(habitId, updatedFreqInfo)
