@@ -1,0 +1,478 @@
+* {
+    box-sizing: border-box;
+}
+
+.clockwork {
+    margin-left: 10px;
+}
+
+#logOut {
+    margin-right: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(248, 169, 100, 1);
+    height: 40px;
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100%; 
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(247, 247, 247);
+    margin: 0; 
+    width: 100%;
+}
+
+
+footer { 
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.coloredSection { 
+    width: 100%;
+    background-color: rgba(248, 169, 100, 1);
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+
+#habitAddPage {
+    position: fixed;
+    bottom: -100%;
+    right: 30%;
+    background-color: rgb(233, 233, 233);
+    margin: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    width: 40%;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.saveCancel {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#habitSubmit, #editSubmit {
+    margin-left: 10px;
+    margin-top: .5rem;
+    background-color: rgb(228, 228, 228);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+#habitSubmit:hover, #cancel:hover, #editSubmit:hover, #editCancel:hover {
+    color: rgb(123, 176, 255);
+    cursor: pointer;
+}
+
+#cancel, #editCancel {
+    margin-right: 10px;
+    margin-top: .5rem;
+}
+
+#editSubmit {
+    margin-bottom: 3px ;
+}
+
+
+#nameInputHolder {
+    width: 97%;
+    margin: 15px; 
+    margin-left: 7px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.habitNameTxt {
+    font-size: 10px;
+    margin: 0.5px 0px 0px 5px ;
+}
+#habitName {
+    width: 100%;
+    border: none; 
+    height: 2rem;
+    box-shadow: 1px 1px;
+    
+    
+}
+#habitName:focus {
+    outline: none;
+}
+
+#posOrNeg {
+    display: none;
+}
+
+#posOrNeg li { 
+    display: inline;
+
+}
+#icons {
+    margin-bottom: 3px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.plusIcon, .minusIcon {
+    color: rgba(248, 169, 100, 1);
+}
+
+.selectedIcon {
+    color: white;
+}
+
+#frequency, #frequencyEdit {
+    width: 30px;
+}
+.h4{
+    margin-bottom: 0;
+}
+.h5{margin-bottom: 5px;}
+
+.freqRow {
+    display: flex;
+    flex-direction: row;
+    height: 15px;
+    align-items: center;
+}
+
+#frequencyType li{
+    display: inline;
+}
+
+#editFreqList li {
+    display: inline;
+}
+
+.target-date {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: flex-start
+   
+    
+}
+#targetDate, #targetDateEdit {
+    margin-bottom: 10px;
+}
+
+
+
+
+#habitAddPage.active {
+    bottom:0; 
+}
+
+.hidden { 
+    display:none
+}
+
+#habitEditPage {
+    position: fixed;
+    bottom: -100%;
+    right: 30%;
+    background-color: rgb(233, 233, 233);
+    margin: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    width: 40%;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+#habitEditPage.active2 {
+    bottom:0;
+}
+
+.habit-container {
+    background-color: rgba(248, 169, 100, 1);
+    margin-top: 0;
+}
+
+.habit-card { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    width: 98%; 
+    /* 80% width if we can get the progress bars in */
+    height: 50px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+
+}
+
+.progress{
+    width: 50%;
+    margin-left: 10px;
+    margin-right: -10px;
+}
+.editNameStreak {
+    display: flex;
+    flex-direction:row;
+    margin-left: 15px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    width: 76%;
+}
+
+.habitTitle {
+    margin: 0;
+    font-size: 17px;
+
+}
+
+.streakDisplay {
+    font-size: 12px;
+}
+
+.edit {
+    width: 40px;
+    border-radius:10px 0 10px 0;
+    padding-left: 10px;
+    margin-left: -15px;
+    margin-top: 0px;
+    padding-top: -5px;
+    height:30px;
+    background-color: rgba(248, 169, 100, 1);
+}
+
+#myDropdown {
+    
+    margin-top: -20px;
+    margin-left: -18px;
+}
+
+#showEditForm:hover {
+    background-color: rgb(211, 210, 210);
+}
+
+.delet:hover {
+    background-color: rgb(211, 210, 210);
+}
+.editDel:hover {
+    cursor: pointer;
+}
+
+.typeBtn {
+    width: 20%;
+    height: 50px;
+    margin-right: 0px;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(248, 169, 100, 1);
+}
+
+.plusTings{
+    font-size: 30px;
+
+}
+
+
+.edit:hover {
+   
+    cursor:pointer;
+    background-color: rgba(255, 205, 162, 0.781);
+}
+
+.typeBtn:hover {
+    
+    cursor: pointer;
+    background-color: rgba(255, 205, 162, 0.781);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: hidden;
+}
+
+
+  
+.circle { 
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px hotpink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 800;
+    
+    }
+
+.selectedCircle {
+    background-color: rgba(248, 169, 100, 1);
+}
+
+  .diamond-shape {
+    background: rgba(248, 169, 100, 1);;
+    height: 60px;
+    text-align: center;
+    transform:rotate(45deg);
+      width:60px;
+      border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .item-count {
+    color: whitesmoke;
+    font-size: 50px;
+    font-weight: 900;
+    display: table-cell;
+    height: 60px;
+    transform: rotate(-45deg);
+    vertical-align: middle;
+    width:60px;
+    border: 1px solid transparent;
+  
+    
+    
+    
+
+  }
+
+  #add-habit {
+      position: fixed;
+      bottom: 15px;
+      transition: 0.2ms;
+      border: 1px solid transparent;
+      left: 50%;
+      margin-left: -30px;
+      
+      
+      
+  }
+
+  #add-habit:hover{ 
+      cursor: pointer;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgba(248, 169, 100, 1);
+      transition: 0.5s;
+
+  }
+
+  .item-count:hover {
+      color: rgba(248, 169, 100, 1);
+      transition: 0.5s;
+  }
+/* CSS VISUALS */
+
+.container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid blue; */
+    flex-direction: column;
+    
+    
+}
+
+#profile-area { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 190px;
+    /* border:1px solid red; */
+}
+
+
+.usrImage {
+    width: 90px;
+    margin-bottom: 10px;
+}
+
+#userIcon { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+#badgeIcon {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+#badgeImage {
+    width: 70px;
+    height: 70px;
+}
+#badgeId {
+    font-size: 12px;
+    margin-top: 1px;
+}
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+    margin-bottom: 15px;
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #04AA6D;
+  }

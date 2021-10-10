@@ -1,0 +1,161 @@
+body {
+  background-color: rgb(240, 240, 240);
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+header {
+   
+    font-size: 20px;
+    
+}
+
+.formDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center ;
+    position: fixed;
+    top: 30%;
+    bottom: 50%;
+    border-radius: 10px;
+    
+
+   
+    
+}
+
+.usrPass {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.username, .password {
+    margin: 10px; 
+   
+}
+
+fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+    border-radius: 10px;
+    background-color:rgba(238, 237, 237, 0.8);
+    height: 400px;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+a {
+    text-decoration: none;
+    font-size : 1.2em;
+}
+
+
+input {
+  background-color: rgba(255,255,255,0.3);
+  height: 2.5rem;
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+  text-align: center;
+}
+
+/* input:focus {
+  outline: 0.5px rgba(248, 169, 100, 0.9);
+} */
+
+#loginSubmit , #registrationSubmit{
+  margin-top: 2rem;
+  background-color: rgba(248, 169, 100, 0.9);
+}
+
+
+/* Popup messsage for confirm password */
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+ 
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    background-color: sandybrown;
+    z-index: -100;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(300% + 1.3px);
+    height: 630px;
+}
+
+.wave .shape-fill {
+    fill: rgb(240, 240, 240);
+}
