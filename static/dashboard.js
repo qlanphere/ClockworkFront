@@ -295,17 +295,17 @@ function displayHabits(habitId, habitName, frequency, startDate, targetDate, hab
         if (typeBtn) {
             let count = 0;
         
-              typeBtn.addEventListener("click",(e) => {
+              typeBtn.addEventListener("click",() => {
                 if(count === 0) {
                   count ++;
               
-                  addBadgepoint(e)
+                  
                   //addLastDoneDate(habitId)
 
                     let updateInfo = {
                         freqStreak: 1,
                     }
-                    updateStreak(habitId, updateInfo)
+                    checkStreak(habitId, updateInfo)
                     setTimeout(() => {  location.reload()}, 50)
 
                 } else {
@@ -355,8 +355,8 @@ function showDrop (e) {
 
 
 
-function addBadgepoint(e){
-    e.preventDefault()
+function addBadgepoint(){
+    //e.preventDefault()
     let url = `https://${host}/users/${currentId}/`
     console.log('badge points increased')
     let options = {
@@ -477,15 +477,15 @@ function progressBar(habitId) {
           period = 1
     } if (data.frequencyType == 'weekly') {
          period = 7
-    } if (data.frequencyType == 'Monthly') {
+    } if (data.frequencyType == 'monthly') {
          period = 30
     }
-         let periodEnd = dayjs(data.periodStart).add(period, 'month').format('MM/DD/YYYY')
+         let periodEnd = dayjs(data.periodStart).add(period, 'day').format('MM/DD/YYYY')
          
         // console.log(difference, todaysDate, data.lastDoneDate)
 
         //console.log(dayjs(data.periodStart).format('MM-DD-YYYY'))
-        console.log(periodEnd >= todaysDate && data.freqStreak >= data.frequency && !data.streakAdded)
+        console.log(periodEnd, todaysDate)
         if (periodEnd >= todaysDate && data.freqStreak >= data.frequency && !data.streakAdded) {
             let freqStreak = 0
             let streak = 1
@@ -515,13 +515,49 @@ function progressBar(habitId) {
     
             updateStreak(habitId, updatedFreqInfo)
         }
+
+        if (periodEnd <= todaysDate && data.streakAdded) {
+            let freqStreak = 0
+
+            let periodStart = dayjs().format('DD/MM/YYYY')
+
+
+            updatedFreqInfo = {
+                freqStreak: freqStreak,
+                periodStart: periodStart
+            }
+    
+            updateStreak(habitId, updatedFreqInfo)
+        }
         
     })
 }
 
-function updateStreak(habitId, updatedFreqInfo) {
-    console.log('Will it go through')
+function checkStreak(habitId, updatedFreqInfo) {
     let url = `https://${host}/frequency/${habitId}`
+
+    let options = {
+        method: "GET",
+        mode: 'cors',
+        headers: { "Content-Type": "application/json",
+                    "authorization": localStorage.getItem('token')
+                }
+    }
+    fetch(url,options)
+    .then(r => r.json())
+    .then(data => {
+        console.log(data)
+        if (!data.streakAdded) {
+            addBadgepoint()
+            updateStreak(habitId, updatedFreqInfo)
+        }
+    })
+}
+
+function updateStreak(habitId, updatedFreqInfo) {
+    
+    let url = `https://${host}/frequency/${habitId}`
+
     let options = {
         method: "PATCH",
         mode: 'cors',
@@ -530,13 +566,12 @@ function updateStreak(habitId, updatedFreqInfo) {
                 },
         body: JSON.stringify(updatedFreqInfo)
     }
-    console.log('It has gone through')
 
     fetch(url,options)
 }
 
 
 
-module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge}
+module.exports = { displayHabits, getHabits, postHabit, show, addBadgepoint, editHabit, loadBadge, checkStreak}
 
 
