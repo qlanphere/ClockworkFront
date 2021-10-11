@@ -531,7 +531,8 @@ function progressBar(habitId) {
 
             updatedFreqInfo = {
                 freqStreak: freqStreak,
-                periodStart: periodStart
+                periodStart: periodStart,
+                streakAdded: false
             }
     
             updateStreak(habitId, updatedFreqInfo)
